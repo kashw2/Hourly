@@ -15,8 +15,17 @@ html {
   font-style: normal;
   padding: 5px 20px 5px 20px;
   cursor: pointer; }
-  .nav:hover {
+  .nav:hover, .nav:active, .nav:focus {
     color: #00ff88;
     background-color: rgba(37, 37, 37, 0.4); }
+    .nav:hover::after, .nav:active::after, .nav:focus::after {
+      display: block;
+      position: relative;
+      content: "";
+      top: 15px;
+      background-color: #ffa500;
+      height: 1px;
+      width: auto;
+      margin: 0px -20px 0px -20px; }
 
 /*# sourceMappingURL=globals.css.map */
