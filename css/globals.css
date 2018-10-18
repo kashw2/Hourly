@@ -1,4 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Lato");
+a,
+a:hover,
+a:active,
+a:visited {
+  display: contents;
+  color: initial;
+  text-decoration: none;
+  cursor: pointer; }
+
 html {
   height: 100%;
   width: 100%; }
@@ -13,8 +22,7 @@ html {
   font-size: 15px;
   font-weight: 300;
   font-style: normal;
-  padding: 5px 20px 5px 20px;
-  cursor: pointer; }
+  padding: 5px 20px 5px 20px; }
   .nav:hover, .nav:active, .nav:focus {
     color: #00ff88;
     background-color: rgba(37, 37, 37, 0.4); }

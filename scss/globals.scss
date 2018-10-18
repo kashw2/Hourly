@@ -2,6 +2,19 @@
 
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
+a,
+a:hover,
+a:active,
+a:visited {
+	display: contents;
+
+	color: initial;
+
+	text-decoration: none;
+
+	cursor: pointer;
+}
+
 html {
 	height: 100%;
 	width: 100%;
@@ -23,8 +36,6 @@ html {
 	font-style: normal;
 
 	padding: 5px 20px 5px 20px;
-
-	cursor: pointer;
 
 	&:hover,
 	&:active,

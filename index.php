@@ -20,14 +20,30 @@
     
         <div id='grid-header'>
 
-            <object data='img/materialicon/baseline-alarm_on-24px.svg'></object>
-            <h3 id='header-heading'>HOURLY</h3>
+            <a href="index.php">
+                <object data='img/materialicon/baseline-alarm_on-24px.svg'></object>
+                <h3 id='header-heading'>HOURLY</h3>
+            </a>
         
-            <h1 id='header-nav-news' class='nav'>NEWS</h1> 
-            <h1 id='header-nav-timeoff' class='nav'>TIME OFF</h1>
-            <h1 id='header-nav-roster' class='nav'>ROSTER</h1>
-            <h1 id='header-nav-employees' class='nav'>EMPLOYEES</h1>
-            <h1 id='header-nav-login' class='nav'>LOGIN</h1>
+            <a href="#">
+                <h1 id='header-nav-news' class='nav'>NEWS</h1>
+            </a>
+
+            <a href="#">
+                <h1 id='header-nav-timeoff' class='nav'>TIME OFF</h1>
+            </a>
+
+            <a href="#">
+                <h1 id='header-nav-roster' class='nav'>ROSTER</h1>
+            </a>
+
+            <a href="#">
+                <h1 id='header-nav-employees' class='nav'>EMPLOYEES</h1>
+            </a>
+
+            <a href="#">
+                <h1 id='header-nav-login' class='nav'>LOGIN</h1>
+            </a>
 
         </div>
 
