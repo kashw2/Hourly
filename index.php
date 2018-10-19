@@ -48,6 +48,12 @@
         </div>
 
         <div id='grid-content'>
+
+            <h1 id='content-slogan'>Keeping you on time, ahead of time</h1>
+
+            <a id='content-link-faq' class="footer-links" href='#'>Faq</a>
+            <a id='content-link-testimonials' class="footer-links" href='#'>Testimonials</a>
+            <a id='content-link-plans' class="footer-links" href='#'>Plans</a>
         
         </div>
 
