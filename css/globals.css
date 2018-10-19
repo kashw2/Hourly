@@ -3,7 +3,7 @@ a,
 a:hover,
 a:active,
 a:visited {
-  display: contents;
+  display: inline;
   color: initial;
   text-decoration: none;
   cursor: pointer; }
@@ -22,7 +22,7 @@ html {
   font-size: 15px;
   font-weight: 300;
   font-style: normal;
-  padding: 5px 20px 5px 20px; }
+  padding: 15px 20px 5px 20px; }
   .nav:hover, .nav:active, .nav:focus {
     color: #00ff88;
     background-color: rgba(37, 37, 37, 0.4); }
