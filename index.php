@@ -25,26 +25,16 @@
                 <h3 id='header-heading'>HOURLY</h3>
             </a>
         
-            <a href="#">
-                <h1 id='header-nav-news' class='nav'>NEWS</h1>
-            </a>
-
-            <a href="#">
-                <h1 id='header-nav-timeoff' class='nav'>TIME OFF</h1>
-            </a>
-
-            <a href="#">
-                <h1 id='header-nav-roster' class='nav'>ROSTER</h1>
-            </a>
-
-            <a href="#">
-                <h1 id='header-nav-employees' class='nav'>EMPLOYEES</h1>
-            </a>
-
-            <a href="#">
-                <h1 id='header-nav-login' class='nav'>LOGIN</h1>
-            </a>
-
+                <a id='header-nav-news' class='nav'>NEWS</a>
+            
+                <a id='header-nav-timeoff' class='nav'>TIME OFF</a>
+            
+                <a id='header-nav-roster' class='nav'>ROSTER</a>
+            
+                <a id='header-nav-employees' class='nav'>EMPLOYEES</a>
+            
+                <a id='header-nav-login' class='nav'>LOGIN</a>
+            
         </div>
 
         <div id='grid-content'>
