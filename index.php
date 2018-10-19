@@ -25,15 +25,15 @@
                 <h3 id='header-heading'>HOURLY</h3>
             </a>
         
-                <a id='header-nav-news' class='nav'>NEWS</a>
+                <a id='header-nav-news' class='nav' href='#'>NEWS</a>
             
-                <a id='header-nav-timeoff' class='nav'>TIME OFF</a>
+                <a id='header-nav-timeoff' class='nav' href='#'>TIME OFF</a>
             
-                <a id='header-nav-roster' class='nav'>ROSTER</a>
+                <a id='header-nav-roster' class='nav' href='#'>ROSTER</a>
             
-                <a id='header-nav-employees' class='nav'>EMPLOYEES</a>
+                <a id='header-nav-employees' class='nav' href='#'>EMPLOYEES</a>
             
-                <a id='header-nav-login' class='nav'>LOGIN</a>
+                <a id='header-nav-login' class='nav' href='#'>LOGIN</a>
             
         </div>
 
