@@ -38,9 +38,8 @@ html {
         html body #grid-container #grid-header #header-heading {
           grid-column: 1;
           grid-row: auto;
-          position: absolute;
-          top: 10px;
-          bottom: 10px;
+          position: relative;
+          bottom: 20px;
           left: 60px;
           height: 16px;
           color: #ffffff;
