@@ -118,3 +118,44 @@ html {
 		}
 	}
 }
+
+.input[type='text'],
+.input[type='password'] {
+	width: 400px;
+	height: 30px;
+
+	background-color: #454545;
+
+	color: #ffffff;
+
+	justify-self: center;
+	align-self: center;
+
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+	font-style: normal;
+
+	border: 1px solid #00ff88;
+
+	padding-left: 10px;
+
+	&[type='text']:hover,
+	&[type='text']:active,
+	&[type='text']:focus {
+		border: 1px solid #00ff22;
+	}
+
+	&[type='password']:hover,
+	&[type='password']:active,
+	&[type='password']:focus {
+		border: 1px solid #00ff22;
+	}
+
+	&::placeholder {
+		color: #ffffff;
+
+		font-family: 'Lato', sans-serif;
+		font-weight: 300;
+		font-style: normal;
+	}
+}

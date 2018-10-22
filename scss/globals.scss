@@ -156,32 +156,3 @@ html {
 		}
 	}
 }
-
-.input[type='text'],
-.input[type='password'] {
-	width: 400px;
-	height: 30px;
-
-	background-color: #454545;
-
-	color: #ffffff;
-
-	justify-self: center;
-	align-self: center;
-
-	font-family: 'Lato', sans-serif;
-	font-weight: 300;
-	font-style: normal;
-
-	border: 1px solid #00ff88;
-
-	padding-left: 10px;
-
-	&::placeholder {
-		color: #ffffff;
-
-		font-family: 'Lato', sans-serif;
-		font-weight: 300;
-		font-style: normal;
-	}
-}

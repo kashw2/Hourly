@@ -74,4 +74,53 @@ html {
               font-size: 12px;
               font-weight: 300; }
 
+.input[type='text'],
+.input[type='password'] {
+  width: 400px;
+  height: 30px;
+  background-color: #454545;
+  color: #ffffff;
+  justify-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  border: 1px solid #00ff88;
+  padding-left: 10px; }
+  .input[type='text'][type='text']:hover, .input[type='text'][type='text']:active, .input[type='text'][type='text']:focus,
+  .input[type='password'][type='text']:hover,
+  .input[type='password'][type='text']:active,
+  .input[type='password'][type='text']:focus {
+    border: 1px solid #00ff22; }
+  .input[type='text'][type='password']:hover, .input[type='text'][type='password']:active, .input[type='text'][type='password']:focus,
+  .input[type='password'][type='password']:hover,
+  .input[type='password'][type='password']:active,
+  .input[type='password'][type='password']:focus {
+    border: 1px solid #00ff22; }
+  .input[type='text']::-webkit-input-placeholder,
+  .input[type='password']::-webkit-input-placeholder {
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: normal; }
+  .input[type='text']:-ms-input-placeholder,
+  .input[type='password']:-ms-input-placeholder {
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: normal; }
+  .input[type='text']::-ms-input-placeholder,
+  .input[type='password']::-ms-input-placeholder {
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: normal; }
+  .input[type='text']::placeholder,
+  .input[type='password']::placeholder {
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: normal; }
+
 /*# sourceMappingURL=login.css.map */
