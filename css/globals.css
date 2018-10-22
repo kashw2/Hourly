@@ -21,6 +21,8 @@ html {
       grid-template-rows: 50px 1fr;
       height: 100%;
       width: 100%; }
+      html body #grid-container #grid-content {
+        background-color: #454545; }
       html body #grid-container #grid-header {
         display: grid;
         grid-column: auto;
