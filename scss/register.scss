@@ -1,0 +1,196 @@
+@import 'partials/_partials.scss';
+
+html {
+	height: 100%;
+	width: 100%;
+
+	overflow: hidden;
+
+	body {
+		height: 100%;
+		width: 100%;
+
+		#grid-container {
+			display: grid;
+
+			grid-template-columns: 1fr;
+			grid-template-rows: 50px 1fr;
+
+			height: 100%;
+			width: 100%;
+
+			#grid-content {
+				display: grid;
+
+				grid-column: auto;
+				grid-row: 2;
+
+				background-color: #454545;
+
+				#content-register-container {
+					display: grid;
+
+					grid-template-columns: 1fr;
+					grid-template-rows: 50px auto;
+
+					justify-self: center;
+					align-self: center;
+
+					width: auto;
+					height: 400px;
+
+					background-color: #4a4a4a;
+
+					border: 1px solid rgba(255, 255, 255, 0.10);
+
+					#register-heading {
+						position: relative;
+
+						align-self: center;
+
+						color: #ffffff;
+
+						font-family: 'Lato', sans-serif;
+						font-size: 35px;
+						font-weight: 300;
+						font-style: italic;
+
+						text-align: left;
+
+						padding: 0px 0px 0px 5px;
+						margin: 0px;
+					}
+
+					#register-form {
+						display: grid;
+
+						grid-column: auto;
+						grid-row: 2;
+
+						grid-template-columns: 1fr 1fr;
+						grid-template-rows: 25px 35px 15px 35px 15px 35px 15px 35px 15px 35px 15px 35px;
+
+						#register-companyname {
+							grid-column: 1;
+							grid-row: 2;
+						}
+						#register-ceo {
+							grid-column: 1;
+							grid-row: 4;
+						}
+						#register-liability {
+							grid-column: 1;
+							grid-row: 6;
+						}
+						#register-state {
+							grid-column: 1;
+							grid-row: 8;
+						}
+						#register-businessaddress {
+							grid-column: 1;
+							grid-row: 10;
+						}
+						#register-parentcompany {
+							grid-column: 1;
+							grid-row: 12;
+						}
+						#register-firstname {
+							grid-column: 2;
+							grid-row: 2;
+						}
+						#register-lastname {
+							grid-column: 2;
+							grid-row: 4;
+						}
+						#register-companyposition {
+							grid-column: 2;
+							grid-row: 6;
+						}
+						#register-contactph {
+							grid-column: 2;
+							grid-row: 8;
+						}
+						#register-email {
+							grid-column: 2;
+							grid-row: 10;
+						}
+						#register-submit {
+							grid-column: 2;
+							grid-row: 12;
+
+							justify-self: center;
+							align-self: center;
+
+							width: 300px;
+							height: 25px;
+
+							background-color: #00ff88;
+
+							border: #00b761;
+
+							color: #ffffff;
+
+							font-family: 'Lato', sans-serif;
+							font-size: 18px;
+							font-weight: 300;
+
+							text-align: center;
+							text-decoration: underline;
+
+							cursor: pointer;
+						}
+						#register-login {
+							grid-column: 2;
+							grid-row: 13;
+
+							justify-self: center;
+							align-self: start;
+
+							color: #ffffff;
+
+							font-family: 'Lato', sans-serif;
+							font-size: 12px;
+							font-weight: 300;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.input[type='text'],
+.input[type='password'] {
+	width: 300px;
+	height: 25px;
+
+	background-color: #454545;
+
+	color: #ffffff;
+
+	justify-self: center;
+	align-self: center;
+
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+	font-style: normal;
+
+	border: 1px solid #00ff88;
+
+	padding-left: 10px;
+	margin: 0px 10px 0px 10px;
+
+	&[type='text']:hover,
+	&[type='text']:active,
+	&[type='text']:focus {
+		border: 1px solid #00ff22;
+	}
+
+	&::placeholder {
+		color: #ffffff;
+
+		font-family: 'Lato', sans-serif;
+		font-weight: 300;
+		font-style: normal;
+	}
+}
