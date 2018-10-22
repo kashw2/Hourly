@@ -1,0 +1,77 @@
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden; }
+  html body {
+    height: 100%;
+    width: 100%; }
+    html body #grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 50px 1fr;
+      height: 100%;
+      width: 100%; }
+      html body #grid-container #grid-content {
+        display: grid;
+        grid-column: auto;
+        grid-row: 2;
+        background-color: #454545; }
+        html body #grid-container #grid-content #content-login-container {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: 50px auto;
+          justify-self: center;
+          align-self: center;
+          width: 500px;
+          height: 450px;
+          background-color: #4a4a4a;
+          border: 1px solid rgba(255, 255, 255, 0.1); }
+          html body #grid-container #grid-content #content-login-container #login-heading {
+            position: relative;
+            -ms-flex-item-align: center;
+                align-self: center;
+            color: #ffffff;
+            font-family: 'Lato', sans-serif;
+            font-size: 40px;
+            font-weight: 300;
+            font-style: italic;
+            text-align: center;
+            padding: 0px;
+            margin: 0px; }
+          html body #grid-container #grid-content #content-login-container #login-form {
+            display: grid;
+            grid-column: auto;
+            grid-row: 2;
+            grid-template-columns: 1fr;
+            grid-template-rows: 70px 50px 30px 50px 50px 70px 1fr; }
+            html body #grid-container #grid-content #content-login-container #login-form #login-username {
+              grid-row: 2; }
+            html body #grid-container #grid-content #content-login-container #login-form #login-password {
+              grid-row: 4; }
+            html body #grid-container #grid-content #content-login-container #login-form #login-submit {
+              grid-row: 6;
+              justify-self: center;
+              -ms-flex-item-align: center;
+                  align-self: center;
+              width: 250px;
+              height: 50px;
+              background-color: #00ff88;
+              border: #00b761;
+              color: #ffffff;
+              font-family: 'Lato', sans-serif;
+              font-size: 28px;
+              font-weight: 300;
+              text-align: center;
+              text-decoration: underline;
+              cursor: pointer; }
+            html body #grid-container #grid-content #content-login-container #login-form #login-register {
+              grid-row: 7;
+              justify-self: center;
+              -ms-flex-item-align: start;
+                  align-self: start;
+              color: #ffffff;
+              font-family: 'Lato', sans-serif;
+              font-size: 12px;
+              font-weight: 300; }
+
+/*# sourceMappingURL=login.css.map */
