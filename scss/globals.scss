@@ -34,10 +34,6 @@ html {
 			height: 100%;
 			width: 100%;
 
-			#grid-content {
-				background-color: #454545;
-			}
-
 			#grid-header {
 				display: grid;
 
@@ -137,22 +133,5 @@ html {
 		color: $hourly-green;
 
 		background-color: rgba(37, 37, 37, 0.400);
-
-		&::after {
-			display: block;
-
-			position: relative;
-
-			content: "";
-
-			top: 15px;
-
-			background-color: #ffa500;
-
-			height: 1px;
-			width: auto;
-
-			margin: 0px -20px 0px -20px;
-		}
 	}
 }

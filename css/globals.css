@@ -21,8 +21,6 @@ html {
       grid-template-rows: 50px 1fr;
       height: 100%;
       width: 100%; }
-      html body #grid-container #grid-content {
-        background-color: #454545; }
       html body #grid-container #grid-header {
         display: grid;
         grid-column: auto;
@@ -85,14 +83,5 @@ html {
   .nav:hover, .nav:active, .nav:focus {
     color: #00ff88;
     background-color: rgba(37, 37, 37, 0.4); }
-    .nav:hover::after, .nav:active::after, .nav:focus::after {
-      display: block;
-      position: relative;
-      content: "";
-      top: 15px;
-      background-color: #ffa500;
-      height: 1px;
-      width: auto;
-      margin: 0px -20px 0px -20px; }
 
 /*# sourceMappingURL=globals.css.map */
