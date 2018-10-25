@@ -58,7 +58,7 @@ if(!$_COOKIE['PHPSESSID']
 
                 <h1 id='register-heading'>Company Register</h1>
 
-                <form id='register-form' method='post' action='inc/register.inc.php'>
+                <form id='register-form' method='post' action='inc/actions/register.company.inc.php'>
                 
                     <input id='register-companyname' class='input' type='text' name='companyname' placeholder='*Company Name:'> 
 
@@ -70,7 +70,7 @@ if(!$_COOKIE['PHPSESSID']
 
                     <input id='register-businessaddress' class='input' type='text' name='businessaddress' placeholder='*Business Address:'> 
 
-                    <input id='register-parentcompany' class='input' type='text' name='parentcompany' placeholder='*Parent Company:'> 
+                    <input id='register-parentcompany' class='input' type='text' name='parentcompany' placeholder='Parent Company:'>
 
                     <input id='register-firstname' class='input' type='text' name='firstname' placeholder='*First Name:'> 
 
@@ -82,7 +82,7 @@ if(!$_COOKIE['PHPSESSID']
 
                     <input id='register-email' class='input' type='text' name='email' placeholder='*Email:'> 
 
-                    <input id='register-submit' type='submit' name='submit' value='Register'>
+                    <input id='register-submit' type='submit' value='Register'>
 
                     <a id='register-login' href='login.php'>Already Registered your Company? Click here to login</a>
 
