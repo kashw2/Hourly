@@ -4,7 +4,7 @@ ob_start();
 
 chdir('../../');
 
-require_once('mysqli.php');
+require_once('mysql.php');
 
 if(
 !empty($_POST['companyname'])
