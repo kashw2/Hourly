@@ -29,7 +29,7 @@ if(
 
     // Prepare, Bind and Execute the SQL Query
 
-    $STATEMENT = mysqli_prepare($conn, '
+    $Statement = mysqli_prepare($conn, '
     INSERT INTO hourly.companies (
         hourly.companies.id,
         hourly.companies.name,
@@ -57,7 +57,7 @@ if(
     );
     ');
 
-    mysqli_stmt_bind_param($STATEMENT,
+    mysqli_stmt_bind_param($Statement,
     "sssssssss",
     $_POST['companyname'],
     $_POST['ceo'],
@@ -70,11 +70,11 @@ if(
     $_POST['email']
     );
 
-    mysqli_stmt_execute($STATEMENT);
+    mysqli_stmt_execute($Statement);
 
-    if($STATEMENT = false) {
+    if($Statement = false) {
 
-        mysqli_stmt_error($STATEMENT);
+        mysqli_stmt_error($Statement);
 
         die();
 
@@ -85,19 +85,23 @@ if(
     && isset($_POST['parentcompany'])
     ) {
 
-        $STATEMENT = mysqli_prepare($conn, '
+        $Statement = mysqli_prepare($conn, '
         UPDATE hourly.companies
         SET hourly.companies.parentcompany = ?
         WHERE hourly.companies.name = ?;
         ');
 
-        mysqli_stmt_bind_param($STATEMENT, "ss", $_POST['parentcompany'], $_POST['companyname']);
+        mysqli_stmt_bind_param($Statement, 
+        "ss", 
+        $_POST['parentcompany'], 
+        $_POST['companyname']
+        );
 
-        mysqli_stmt_execute($STATEMENT);
+        mysqli_stmt_execute($Statement);
     
-        if($STATEMENT = false) {
+        if($Statement = false) {
 
-            mysqli_stmt_error($STATEMENT);
+            mysqli_stmt_error($Statement);
 
             die();
 
@@ -110,19 +114,23 @@ if(
     && isset($_POST['contactph'])
     ) {
     
-        $STATEMENT = mysqli_prepare($conn, '
+        $Statement = mysqli_prepare($conn, '
         UPDATE hourly.companies
         SET hourly.companies.registrarph = ?
         WHERE hourly.companies.name = ?;
         ');
 
-        mysqli_stmt_bind_param($STATEMENT, "ss", $_POST['parentcompany'], $_POST['companyname']);
+        mysqli_stmt_bind_param($Statement, 
+        "ss", 
+        $_POST['parentcompany'], 
+        $_POST['companyname']
+        );
 
-        mysqli_stmt_execute($STATEMENT);
+        mysqli_stmt_execute($Statement);
 
-        if($STATEMENT = false) {
+        if($Statement = false) {
 
-            mysqli_stmt_error($STATEMENT);
+            mysqli_stmt_error($Statement);
 
             die();
 
