@@ -1,3 +1,18 @@
+<?php
+
+ob_start();
+
+if(!$_COOKIE['PHPSESSID']
+|| !isset($_COOKIE['PHPSESSID'])
+|| empty($_COOKIE['PHPSESSID'])
+) {
+    session_start();
+
+    header('Location:'  . __FILE__ . '.php');
+
+}
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -24,7 +39,7 @@
                 <object data='img/materialicon/baseline-alarm_on-24px.svg'></object>
                 <h3 id='header-heading'>HOURLY</h3>
             </a>
-        
+
                 <a id='header-nav-news' class='nav' href='#'>NEWS</a>
             
                 <a id='header-nav-timeoff' class='nav' href='#'>TIME OFF</a>
