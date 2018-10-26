@@ -33,7 +33,7 @@
             
                 <a id='header-nav-employees' class='nav' href='#'>EMPLOYEES</a>
             
-                <a id='header-nav-login' class='nav' href='#'>LOGIN</a>
+                <a id='header-nav-login' class='nav' href='login.php'>LOGIN</a>
             
         </div>
 
