@@ -7,7 +7,8 @@ $Username = 'root';
 $Password = '';
 $DatabaseName = 'hourly';
 
-$conn = mysqli_connect($Host, $Username, $Password, $DatabaseName);
+
+$conn = new mysqli($Host, $Username, $Password, $DatabaseName);
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
