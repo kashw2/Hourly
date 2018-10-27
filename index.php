@@ -2,15 +2,7 @@
 
 ob_start();
 
-if(!$_COOKIE['PHPSESSID']
-|| !isset($_COOKIE['PHPSESSID'])
-|| empty($_COOKIE['PHPSESSID'])
-) {
-    session_start();
-
-    header('Location:'  . __FILE__ . '.php');
-
-}
+session_start();
 
 ?>
 <!DOCTYPE html>
