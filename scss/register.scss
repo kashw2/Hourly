@@ -61,6 +61,22 @@ html {
 						margin: 0px;
 					}
 
+					#register-error {
+						position: absolute;
+
+						align-self: start;
+						justify-self: end;
+
+						color: #ff0000;
+
+						font-family: 'Lato', sans-serif;
+						font-size: 12px;
+						font-weight: 300;
+						font-style: normal;
+
+						padding: 0px 20px 0px 0px;
+					}
+
 					#register-form {
 						display: grid;
 

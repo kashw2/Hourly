@@ -38,6 +38,17 @@ html {
             text-align: left;
             padding: 0px 0px 0px 5px;
             margin: 0px; }
+          html body #grid-container #grid-content #content-register-container #register-error {
+            position: absolute;
+            -ms-flex-item-align: start;
+                align-self: start;
+            justify-self: end;
+            color: #ff0000;
+            font-family: 'Lato', sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            font-style: normal;
+            padding: 0px 20px 0px 0px; }
           html body #grid-container #grid-content #content-register-container #register-form {
             display: grid;
             grid-column: auto;
