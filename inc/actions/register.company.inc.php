@@ -5,6 +5,11 @@ ob_start();
 chdir('../../');
 
 require_once('mysql.php');
+require_once('inc/classes/errors.class.inc.php');
+
+session_start();
+
+$RegError = new RegistrationError;
 
 if(
 !empty($_POST['companyname'])
@@ -27,116 +32,114 @@ if(
 &&  isset($_POST['email'])
 ) {
 
-    // Prepare, Bind and Execute the SQL Query
+    if($RegError->getCompanyName($conn, $_POST['companyname']) == $_POST['companyname']) {
 
-    $Statement = mysqli_prepare($conn, '
-    INSERT INTO hourly.companies (
-        hourly.companies.id,
-        hourly.companies.name,
-        hourly.companies.ceo,
-        hourly.companies.liability,
-        hourly.companies.state,
-        hourly.companies.businessaddress,
-        hourly.companies.registrarfirstname,
-        hourly.companies.registrarlastname,
-        hourly.companies.registrarcompanyposition,
-        hourly.companies.registraremail,
-        hourly.companies.creationdate
-    ) VALUES (
-    DEFAULT,
-    ?,
-    ?,
-    ?,
-    ?,
-    ?,
-    ?,
-    ?,
-    ?,
-    ?,
-    DEFAULT
-    );
-    ');
+        $_SESSION['Error'] = "Error: Company already registered.";
 
-    mysqli_stmt_bind_param($Statement,
-    "sssssssss",
-    $_POST['companyname'],
-    $_POST['ceo'],
-    $_POST['liability'],
-    $_POST['state'],
-    $_POST['businessaddress'],
-    $_POST['firstname'],
-    $_POST['lastname'],
-    $_POST['companyposition'],
-    $_POST['email']
-    );
+        header('Location: ../../register.php');
 
-    mysqli_stmt_execute($Statement);
+        die();
 
-    if($Statement = false) {
+    } else {
 
-        mysqli_stmt_error($Statement);
+        // Prepare, Bind and Execute the SQL Query
+
+        $Statement = mysqli_prepare($conn, '
+        INSERT INTO hourly.companies (
+            hourly.companies.id,
+            hourly.companies.name,
+            hourly.companies.ceo,
+            hourly.companies.liability,
+            hourly.companies.state,
+            hourly.companies.businessaddress,
+            hourly.companies.registrarfirstname,
+            hourly.companies.registrarlastname,
+            hourly.companies.registrarcompanyposition,
+            hourly.companies.registraremail,
+            hourly.companies.creationdate
+        ) VALUES (
+        DEFAULT,
+        ?,
+        ?,
+        ?,
+        ?,
+        ?,
+        ?,
+        ?,
+        ?,
+        ?,
+        DEFAULT
+        );
+        ');
+
+        mysqli_stmt_bind_param($Statement,
+        "sssssssss",
+        $_POST['companyname'],
+        $_POST['ceo'],
+        $_POST['liability'],
+        $_POST['state'],
+        $_POST['businessaddress'],
+        $_POST['firstname'],
+        $_POST['lastname'],
+        $_POST['companyposition'],
+        $_POST['email']
+        );
+
+        mysqli_stmt_execute($Statement);
+
+        if(
+        !empty($_POST['parentcompany'])
+        && isset($_POST['parentcompany'])
+        ) {
+
+            $Statement = mysqli_prepare($conn, '
+            UPDATE hourly.companies
+            SET hourly.companies.parentcompany = ?
+            WHERE hourly.companies.name = ?;
+            ');
+
+            mysqli_stmt_bind_param($Statement, 
+            "ss",
+            $_POST['parentcompany'], 
+            $_POST['companyname']
+            );
+
+            mysqli_stmt_execute($Statement);
+
+        }
+
+        if(
+        !empty($_POST['contactph'])
+        && isset($_POST['contactph'])
+        ) {
+        
+            $Statement = mysqli_prepare($conn, '
+            UPDATE hourly.companies
+            SET hourly.companies.registrarph = ?
+            WHERE hourly.companies.name = ?;
+            ');
+
+            mysqli_stmt_bind_param($Statement, 
+            "ss", 
+            $_POST['contactph'], 
+            $_POST['companyname']
+            );
+
+            mysqli_stmt_execute($Statement);
+
+        }
+
+        header('Location: ../../home.php');
 
         die();
 
     }
 
-    if(
-    !empty($_POST['parentcompany'])
-    && isset($_POST['parentcompany'])
-    ) {
+} else {
 
-        $Statement = mysqli_prepare($conn, '
-        UPDATE hourly.companies
-        SET hourly.companies.parentcompany = ?
-        WHERE hourly.companies.name = ?;
-        ');
+    $_SESSION['Error'] = "Error: Input fields empty";
 
-        mysqli_stmt_bind_param($Statement, 
-        "ss", 
-        $_POST['parentcompany'], 
-        $_POST['companyname']
-        );
-
-        mysqli_stmt_execute($Statement);
-    
-        if($Statement = false) {
-
-            mysqli_stmt_error($Statement);
-
-            die();
-
-        }
-
-    }
-
-    if(
-    !empty($_POST['contactph'])
-    && isset($_POST['contactph'])
-    ) {
-    
-        $Statement = mysqli_prepare($conn, '
-        UPDATE hourly.companies
-        SET hourly.companies.registrarph = ?
-        WHERE hourly.companies.name = ?;
-        ');
-
-        mysqli_stmt_bind_param($Statement, 
-        "ss", 
-        $_POST['parentcompany'], 
-        $_POST['companyname']
-        );
-
-        mysqli_stmt_execute($Statement);
-
-        if($Statement = false) {
-
-            mysqli_stmt_error($Statement);
-
-            die();
-
-        }
-
-    }
+    header('Location: ../../register.php');
 
 }
 
