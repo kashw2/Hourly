@@ -50,8 +50,20 @@ session_start();
 
                 <h1 id='register-heading'>Company Register</h1>
 
+                <?php
+
+                    if($_SESSION['Error']) {
+
+                        echo '<p id="register-error">' . $_SESSION['Error'] . '</p>';
+
+                        unset($_SESSION['Error']);
+
+                    }
+
+                ?>
+
                 <form id='register-form' method='post' action='inc/actions/register.company.inc.php'>
-                
+
                     <input id='register-companyname' class='input' type='text' name='companyname' placeholder='*Company Name:'> 
 
                     <input id='register-ceo' class='input' type='text' name='ceo' placeholder='*CEO:'> 
