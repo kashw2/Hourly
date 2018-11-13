@@ -129,7 +129,7 @@ if(
 
         }
 
-        header('Location: ../../home.php');
+        header('Location: ../../setup.php?token=' . session_id());
 
         die();
 
