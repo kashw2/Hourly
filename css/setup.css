@@ -1,0 +1,69 @@
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden; }
+  html body {
+    height: 100%;
+    width: 100%; }
+    html body #grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 50px 1fr;
+      height: 100%;
+      width: 100%; }
+      html body #grid-container #grid-content {
+        display: grid;
+        grid-column: auto;
+        grid-row: 2;
+        background-color: #454545; }
+        html body #grid-container #grid-content #content-setup-intro {
+          position: relative;
+          top: 10px;
+          left: 20px;
+          color: #b5b5b5;
+          height: 30px;
+          width: auto;
+          font-family: 'Lato', sans-serif;
+          font-weight: 300;
+          font-size: 19px;
+          margin: 0 auto; }
+
+.input[type='text'] {
+  width: 400px;
+  height: 30px;
+  background-color: #454545;
+  color: #ffffff;
+  justify-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  border: 1px solid #00ff88;
+  padding-left: 10px; }
+  .input[type='text'][type='text']:hover, .input[type='text'][type='text']:active, .input[type='text'][type='text']:focus {
+    border: 1px solid #00ff22; }
+  .input[type='text'][type='password']:hover, .input[type='text'][type='password']:active, .input[type='text'][type='password']:focus {
+    border: 1px solid #00ff22; }
+  .input[type='text']::-webkit-input-placeholder {
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: normal; }
+  .input[type='text']:-ms-input-placeholder {
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: normal; }
+  .input[type='text']::-ms-input-placeholder {
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: normal; }
+  .input[type='text']::placeholder {
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: normal; }
+
+/*# sourceMappingURL=setup.css.map */
