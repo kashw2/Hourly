@@ -50,7 +50,7 @@ if($_GET['token'] != session_id()) {
 
                 <p id='container-heading'>Your Account</p>
 
-                <form id='register-account' method='post' action='register.account.inc.php'>
+                <form id='register-account' method='post' action='inc/actions/register.account.inc.php'>
 
                     <input id='account-username' class='input' type='text' name='username' placeholder='Username:' form='register-account'>
 
