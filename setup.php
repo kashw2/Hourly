@@ -46,6 +46,26 @@ if($_GET['token'] != session_id()) {
 
             <p id='content-setup-intro'>Just a few more things before we continue.</p>
 
+            <div id='content-form-container'>
+
+                <p id='container-heading'>Your Account</p>
+
+                <form id='register-account' method='post' action='register.account.inc.php'>
+
+                    <input id='account-username' class='input' type='text' name='username' placeholder='Username:' form='register-account'>
+
+                    <input id='account-password' class='input' type='password' name='password' placeholder='Password:' form='register-account'>
+
+                    <input id='account-autogen' class='input' type='checkbox' name='autogen' form='register-account'>
+
+                    <p id='account-autogen-placeholder'>Auto Generate Password</p>
+
+                    <input id='account-submit' type='submit' value='Submit' form='register-account'>
+
+                </form>
+
+            </div>
+
         </div>
 
     </div>
