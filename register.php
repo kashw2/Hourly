@@ -31,16 +31,6 @@ session_start();
                 <object data='img/materialicon/baseline-alarm_on-24px.svg'></object>
                 <h3 id='header-heading'>HOURLY</h3>
             </a>
-
-                <a id='header-nav-news' class='nav' href='#'>NEWS</a>
-            
-                <a id='header-nav-timeoff' class='nav' href='#'>TIME OFF</a>
-            
-                <a id='header-nav-roster' class='nav' href='#'>ROSTER</a>
-            
-                <a id='header-nav-employees' class='nav' href='#'>EMPLOYEES</a>
-            
-                <a id='header-nav-login' class='nav' href='login.php'>LOGIN</a>
             
         </div>
 
