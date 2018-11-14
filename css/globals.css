@@ -72,6 +72,9 @@ html {
         html body #grid-container #grid-header #header-nav-login {
           grid-column: 7;
           grid-row: auto; }
+        html body #grid-container #grid-header #header-nav-logout {
+          grid-column: 7;
+          grid-row: auto; }
       html body #grid-container #grid-content #content-heading {
         position: absolute;
         top: 40px;
