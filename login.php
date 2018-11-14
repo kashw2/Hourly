@@ -40,7 +40,7 @@ session_start();
 
                 <h1 id='login-heading'>Login</h1>
 
-                <form id='login-form' method='post' action='inc/login.inc.php'>
+                <form id='login-form' method='post' action='inc/actions/login.inc.php'>
                 
                     <input id='login-username' class='input' type='text' name='username' placeholder='Username:'> 
 
