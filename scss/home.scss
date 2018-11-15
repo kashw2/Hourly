@@ -1,0 +1,51 @@
+@import 'partials/_partials.scss';
+
+html {
+	height: 100%;
+	width: 100%;
+
+	overflow: hidden;
+
+	body {
+		height: 100%;
+		width: 100%;
+
+		#grid-container {
+			display: grid;
+
+			grid-template-columns: 1fr;
+			grid-template-rows: 50px 1fr;
+
+			height: 100%;
+			width: 100%;
+
+			#grid-content {
+				display: grid;
+
+				grid-column: auto;
+				grid-row: 2;
+
+				background-color: #454545;
+
+				#content-setup-intro {
+					position: relative;
+
+					top: 10px;
+					left: 20px;
+
+					color: #b5b5b5;
+
+					height: 30px;
+					width: auto;
+
+					font-family: 'Lato', sans-serif;
+					font-weight: 300;
+					font-size: 19px;
+					font-style: normal;
+
+					margin: 0 auto;
+				}
+			}
+		}
+	}
+}
