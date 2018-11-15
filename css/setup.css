@@ -47,6 +47,18 @@ html {
             font-size: 15px;
             font-style: normal;
             margin: 0 60px; }
+          html body #grid-container #grid-content #content-form-container #register-error {
+            position: absolute;
+            top: -10px;
+            right: 60px;
+            grid-column: auto;
+            grid-row: 1;
+            color: #ff0000;
+            text-align: start;
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            font-size: 12px;
+            font-style: normal; }
           html body #grid-container #grid-content #content-form-container #register-account {
             display: grid;
             grid-column: auto;

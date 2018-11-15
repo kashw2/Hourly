@@ -77,6 +77,25 @@ html {
 						margin: 0 60px;
 					}
 
+					#register-error {
+						position: absolute;
+
+						top: -10px;
+						right: 60px;
+
+						grid-column: auto;
+						grid-row: 1;
+
+						color: #ff0000;
+
+						text-align: start;
+
+						font-family: 'Lato', sans-serif;
+						font-weight: 300;
+						font-size: 12px;
+						font-style: normal;
+					}
+
 					#register-account {
 						display: grid;
 
