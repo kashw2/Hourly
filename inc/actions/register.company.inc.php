@@ -129,6 +129,10 @@ if(
 
         }
 
+        $_SESSION['User']['Email'] = $_POST['email'];
+        $_SESSION['User']['Company'] = $_POST['companyname'];
+        $_SESSION['User']['Position'] = $_POST['companyposition'];
+
         header('Location: ../../setup.php?token=' . session_id());
 
         die();
