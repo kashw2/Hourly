@@ -58,7 +58,19 @@ if(
 
         mysqli_stmt_execute($Statement);
 
-        header('Location: /.../home.php');
+        if(mysqli_error($conn)) {
+
+            $_SESSION['Error'] = 'Error';
+
+            header('Location: /.../setup.php?token=' . session_id());
+
+            die();
+
+        } else {
+
+            header('Location: /.../home.php');
+
+        }
 
         die();
 
@@ -119,7 +131,19 @@ if(
 
                 mysqli_stmt_execute($Statement);
 
-                header('Location: home.php');
+                if(mysqli_error($conn)) {
+
+                    $_SESSION['Error'] = 'Error';
+
+                    header('Location: /.../setup.php?token=' . session_id());
+
+                    die();
+
+                } else {
+
+                    header('Location: /.../home.php');
+
+                }
 
                 die();
 
