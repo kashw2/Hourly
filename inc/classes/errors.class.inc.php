@@ -60,6 +60,30 @@ class RegistrationError extends Errors {
 
     }
 
+    public static function checkAccount($Connection, $AccountName) {
+
+        $Statement = mysqli_prepare($Connection, '
+        SELECT
+        hourly.accounts.username
+        FROM hourly.accounts
+        WHERE hourly.accounts.username = ?;
+        ');
+
+        mysqli_stmt_bind_param($Statement,
+        's',
+        $AccountName
+        );
+
+        mysqli_stmt_execute($Statement);
+
+        mysqli_stmt_bind_result($Statement, $AccountName);
+
+        mysqli_stmt_fetch($Statement);
+
+        return $AccountName;
+
+    }
+
 }
 
 ?>
