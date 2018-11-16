@@ -72,13 +72,13 @@ if(
 
                 $_SESSION['Error'] = 'Error';
 
-                header('Location: /.../setup.php?token=' . session_id());
+                header('Location: ../../setup.php?token=' . session_id());
 
                 die();
 
             } else {
 
-                header('Location: /.../home.php');
+                header('Location: ../../home.php');
 
             }
 
@@ -157,13 +157,13 @@ if(
 
                         $_SESSION['Error'] = 'Error';
 
-                        header('Location: /.../setup.php?token=' . session_id());
+                        header('Location: ../../setup.php?token=' . session_id());
 
                         die();
 
                     } else {
 
-                        header('Location: /.../home.php');
+                        header('Location: ../../home.php');
 
                     }
 
@@ -175,7 +175,7 @@ if(
 
                 $_SESSION['Error'] = "Error: Input fields empty";
 
-                header('Location: /.../setup.php?token=' . session_id());
+                header('Location: ../../setup.php?token=' . session_id());
 
                 die();
 
