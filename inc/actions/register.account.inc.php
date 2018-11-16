@@ -80,6 +80,8 @@ if(
 
                 header('Location: ../../home.php');
 
+                unset($_SESSION['Email']);
+
             }
 
             die();
@@ -164,6 +166,8 @@ if(
                     } else {
 
                         header('Location: ../../home.php');
+
+                        unset($_SESSION['Email']);
 
                     }
 
