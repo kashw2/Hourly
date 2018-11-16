@@ -84,6 +84,30 @@ class RegistrationError extends Errors {
 
     }
 
+    public static function checkEmail($Connection, $AccountEmail) {
+
+        $Statement = mysqli_prepare($Connection, '
+        SELECT
+        hourly.accounts.email
+        FROM hourly.accounts
+        WHERE hourly.accounts.email = ?;
+        ');
+
+        mysqli_stmt_bind_param($Statement,
+        's',
+        $AccountEmail
+        );
+
+        mysqli_stmt_execute($Statement);
+
+        mysqli_stmt_bind_result($Statement, $AccountEmail);
+
+        mysqli_stmt_fetch($Statement);
+
+        return $AccountEmail;
+
+    }
+
 }
 
 ?>
