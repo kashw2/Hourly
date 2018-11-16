@@ -18,7 +18,7 @@ if(
 &&  !empty($_POST['password'])
 ) {
 
-    if($RegError->checkAccount($conn, $_POST['username']) == $_POST['username']) {
+    if($RegError->checkAccount($conn, $_POST['username']) > 0) {
 
         $_SESSION['Error'] = "Error: Account already exists.";
 
@@ -28,7 +28,7 @@ if(
 
     } else {
 
-        if($RegError->checkEmail($conn, $_SESSION['Email']) == $_SESSION['Email']) {
+        if($RegError->checkEmail($conn, $_SESSION['Email']) > 0) {
 
             $_SESSION['Error'] = "Error: Account already exists.";
 
@@ -90,7 +90,7 @@ if(
 
 } else {
 
-    if($RegError->checkAccount($conn, $_POST['username']) == $_POST['username']) {
+    if($RegError->checkAccount($conn, $_POST['username']) > 0) {
 
         $_SESSION['Error'] = "Error: Account already exists.";
 
@@ -100,7 +100,7 @@ if(
 
     } else {
 
-        if($RegError->checkEmail($conn, $_SESSION['Email']) == $_SESSION['Email']) {
+        if($RegError->checkEmail($conn, $_SESSION['Email']) > 0) {
 
             $_SESSION['Error'] = "Error: Account already exists.";
 

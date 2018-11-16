@@ -78,9 +78,11 @@ class RegistrationError extends Errors {
 
         mysqli_stmt_bind_result($Statement, $AccountName);
 
+        $Result = mysqli_stmt_get_result($Statement);
+
         mysqli_stmt_fetch($Statement);
 
-        return $AccountName;
+        return mysqli_num_rows($Result);
 
     }
 
@@ -102,9 +104,11 @@ class RegistrationError extends Errors {
 
         mysqli_stmt_bind_result($Statement, $AccountEmail);
 
+        $Result = mysqli_stmt_get_result($Statement);
+
         mysqli_stmt_fetch($Statement);
 
-        return $AccountEmail;
+        return mysqli_num_rows($Result);
 
     }
 
