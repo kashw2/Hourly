@@ -27,52 +27,64 @@ if(
         die();
 
     } else {
-            
-        $Statement = mysqli_prepare($conn, '
-        INSERT INTO
-        hourly.accounts (
-            hourly.accounts.id,
-            hourly.accounts.username,
-            hourly.accounts.password,
-            hourly.accounts.email,
-            hourly.accounts.company,
-            hourly.accounts.position
-        ) VALUES (
-            DEFAULT,
-            ?,
-            ?,
-            ?,
-            ?,
-            ?
-        )
-        ');
 
-        mysqli_stmt_bind_param($Statement,
-        'sssss',
-        $_POST['username'],
-        md5($_POST['password']),
-        $_SESSION['User']['Email'],
-        $_SESSION['User']['Company'],
-        $_SESSION['User']['Position']
-        );
+        if($RegError->checkEmail($conn, $_SESSION['Email']) == $_SESSION['Email']) {
 
-        mysqli_stmt_execute($Statement);
+            $_SESSION['Error'] = "Error: Account already exists.";
 
-        if(mysqli_error($conn)) {
-
-            $_SESSION['Error'] = 'Error';
-
-            header('Location: /.../setup.php?token=' . session_id());
+            header('Location: ../../setup.php?token=' . session_id());
 
             die();
 
         } else {
+            
+            $Statement = mysqli_prepare($conn, '
+            INSERT INTO
+            hourly.accounts (
+                hourly.accounts.id,
+                hourly.accounts.username,
+                hourly.accounts.password,
+                hourly.accounts.email,
+                hourly.accounts.company,
+                hourly.accounts.position
+            ) VALUES (
+                DEFAULT,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?
+            )
+            ');
 
-            header('Location: /.../home.php');
+            mysqli_stmt_bind_param($Statement,
+            'sssss',
+            $_POST['username'],
+            md5($_POST['password']),
+            $_SESSION['User']['Email'],
+            $_SESSION['User']['Company'],
+            $_SESSION['User']['Position']
+            );
+
+            mysqli_stmt_execute($Statement);
+
+            if(mysqli_error($conn)) {
+
+                $_SESSION['Error'] = 'Error';
+
+                header('Location: /.../setup.php?token=' . session_id());
+
+                die();
+
+            } else {
+
+                header('Location: /.../home.php');
+
+            }
+
+            die();
 
         }
-
-        die();
 
     }
 
@@ -88,74 +100,86 @@ if(
 
     } else {
 
-        if(
-            isset($_POST['username'])
-        &&  !empty($_POST['username'])
-        ) {
+        if($RegError->checkEmail($conn, $_SESSION['Email']) == $_SESSION['Email']) {
+
+            $_SESSION['Error'] = "Error: Account already exists.";
+
+            header('Location: ../../setup.php?token=' . session_id());
+
+            die();
+
+        } else {
 
             if(
-                isset($_POST['autogen'])
-            &&  !empty($_POST['autogen'])
-            &&  $_POST['autogen'] == "on"
-                ) {
+                isset($_POST['username'])
+            &&  !empty($_POST['username'])
+            ) {
 
-                $Password = substr(hash("md5", time()), 0, 8);
+                if(
+                    isset($_POST['autogen'])
+                &&  !empty($_POST['autogen'])
+                &&  $_POST['autogen'] == "on"
+                    ) {
 
-                $Statement = mysqli_prepare($conn, '
-                INSERT INTO
-                hourly.accounts (
-                    hourly.accounts.id,
-                    hourly.accounts.username,
-                    hourly.accounts.password,
-                    hourly.accounts.email,
-                    hourly.accounts.company,
-                    hourly.accounts.position
-                ) VALUES (
-                    DEFAULT,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?
-                )
-                ');
+                    $Password = substr(hash("md5", time()), 0, 8);
 
-                mysqli_stmt_bind_param($Statement,
-                'sssss',
-                $_POST['username'],
-                $Password,
-                $_SESSION['User']['Email'],
-                $_SESSION['User']['Company'],
-                $_SESSION['User']['Position']
-                );
+                    $Statement = mysqli_prepare($conn, '
+                    INSERT INTO
+                    hourly.accounts (
+                        hourly.accounts.id,
+                        hourly.accounts.username,
+                        hourly.accounts.password,
+                        hourly.accounts.email,
+                        hourly.accounts.company,
+                        hourly.accounts.position
+                    ) VALUES (
+                        DEFAULT,
+                        ?,
+                        ?,
+                        ?,
+                        ?,
+                        ?
+                    )
+                    ');
 
-                mysqli_stmt_execute($Statement);
+                    mysqli_stmt_bind_param($Statement,
+                    'sssss',
+                    $_POST['username'],
+                    $Password,
+                    $_SESSION['User']['Email'],
+                    $_SESSION['User']['Company'],
+                    $_SESSION['User']['Position']
+                    );
 
-                if(mysqli_error($conn)) {
+                    mysqli_stmt_execute($Statement);
 
-                    $_SESSION['Error'] = 'Error';
+                    if(mysqli_error($conn)) {
 
-                    header('Location: /.../setup.php?token=' . session_id());
+                        $_SESSION['Error'] = 'Error';
+
+                        header('Location: /.../setup.php?token=' . session_id());
+
+                        die();
+
+                    } else {
+
+                        header('Location: /.../home.php');
+
+                    }
 
                     die();
 
-                } else {
-
-                    header('Location: /.../home.php');
-
                 }
+
+            } else {
+
+                $_SESSION['Error'] = "Error: Input fields empty";
+
+                header('Location: /.../setup.php?token=' . session_id());
 
                 die();
 
             }
-
-        } else {
-
-            $_SESSION['Error'] = "Error: Input fields empty";
-
-            header('Location: /.../setup.php?token=' . session_id());
-
-            die();
 
         }
 
