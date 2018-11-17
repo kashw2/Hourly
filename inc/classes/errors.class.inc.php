@@ -82,6 +82,9 @@ class RegistrationError extends Errors {
 
         mysqli_stmt_fetch($Statement);
 
+        /*
+        At the end of the method the number of results are returned rather than the result itself.
+        */
         return mysqli_num_rows($Result);
 
     }
@@ -108,8 +111,39 @@ class RegistrationError extends Errors {
 
         mysqli_stmt_fetch($Statement);
 
+        /*
+        At the end of the method the number of results are returned rather than the result itself.
+        */
         return mysqli_num_rows($Result);
 
+    }
+
+    public static function checkRegistrantCompany($Connection, $CompanyName) {
+
+        $Statement = mysqli_prepare($Connection, '
+        SELECT
+        hourly.accounts.company
+        FROM hourly.accounts
+        WHERE hourly.accounts.company = ?;
+        ');
+
+        mysqli_stmt_bind_param($Statement,
+        's',
+        $CompanyName
+        );
+
+        mysqli_stmt_execute($Statement);
+
+        mysqli_stmt_bind_result($Statement, $CompanyName);
+
+        $Result = mysqli_stmt_get_result($Statement);
+
+        mysqli_stmt_fetch($Statement);
+
+        /*
+        At the end of the method the number of results are returned rather than the result itself.
+        */
+        return mysqli_num_rows($Result);
     }
 
 }
