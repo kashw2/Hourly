@@ -38,6 +38,8 @@ html {
           width: 380px;
           margin: 0 auto; }
           html body #grid-container #grid-content #content-form-container #container-heading {
+            position: relative;
+            top: -20px;
             grid-column: auto;
             grid-row: 1;
             color: #b5b5b5;
@@ -50,9 +52,10 @@ html {
           html body #grid-container #grid-content #content-form-container #register-error {
             position: absolute;
             top: -10px;
-            right: 60px;
+            left: 60px;
             grid-column: auto;
             grid-row: 1;
+            justify-self: start;
             color: #ff0000;
             text-align: start;
             font-family: 'Lato', sans-serif;
