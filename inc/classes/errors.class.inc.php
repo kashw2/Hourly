@@ -60,7 +60,7 @@ class RegistrationError extends Errors {
 
     }
 
-    public static function checkAccount($Connection, $AccountName) {
+    public static function countRegistrantAccount($Connection, $AccountName) {
 
         $Statement = mysqli_prepare($Connection, '
         SELECT
@@ -89,7 +89,7 @@ class RegistrationError extends Errors {
 
     }
 
-    public static function checkEmail($Connection, $AccountEmail) {
+    public static function countRegistrantEmail($Connection, $AccountEmail) {
 
         $Statement = mysqli_prepare($Connection, '
         SELECT
@@ -118,7 +118,7 @@ class RegistrationError extends Errors {
 
     }
 
-    public static function checkRegistrantCompany($Connection, $CompanyName) {
+    public static function countRegistrantCompany($Connection, $CompanyName) {
 
         $Statement = mysqli_prepare($Connection, '
         SELECT
