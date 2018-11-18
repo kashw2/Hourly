@@ -5,11 +5,11 @@ ob_start();
 chdir('../../');
 
 require_once('mysql.php');
-require_once('inc/classes/errors.class.inc.php');
+require_once('inc/classes/reporting.class.inc.php');
 
 session_start();
 
-$RegError = new RegistrationError;
+$RegError = new Registration;
 
 if(
     isset($_POST['username'])
