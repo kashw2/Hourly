@@ -141,7 +141,14 @@ if(
 
                     } else {
 
-                        $Password = substr(hash("md5", time()), 0, 8);
+                        /*
+                        To avoid a new time() being generated on a different second
+                        and to avoid sync issues within the modal, view and controller
+                        we will store the time statically in a variable.
+                        */
+                        $Time = time();
+
+                        $Password = substr(hash("md5", $Time), 0, 8);
 
                         $Statement = mysqli_prepare($conn, '
                         INSERT INTO
