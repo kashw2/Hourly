@@ -1,8 +1,10 @@
 <?php
 
-// Error handling via this class file structure. 
+/*
+This file is accountable for all reporting of errors, success etc
+*/
 
-class Errors {
+class Reporting {
 
     public function __construct() {
         echo __CLASS__ . ' class initialised.';
@@ -14,7 +16,7 @@ class Errors {
 
 }
 
-class LoginError extends Errors {
+class Login extends Reporting {
     
     public function __construct() {
         echo __CLASS__ . ' class initialised.';
@@ -26,7 +28,7 @@ class LoginError extends Errors {
 
 }
 
-class RegistrationError extends Errors {
+class Registration extends Reporting {
 
     public function __construct() {
         echo __CLASS__ . ' class initialised.';
@@ -80,12 +82,10 @@ class RegistrationError extends Errors {
 
         $Result = mysqli_stmt_get_result($Statement);
 
-        mysqli_stmt_fetch($Statement);
-
         /*
         At the end of the method the number of results are returned rather than the result itself.
         */
-        return mysqli_num_rows($Result);
+        return $Result['num_rows'];
 
     }
 
@@ -109,12 +109,10 @@ class RegistrationError extends Errors {
 
         $Result = mysqli_stmt_get_result($Statement);
 
-        mysqli_stmt_fetch($Statement);
-
         /*
         At the end of the method the number of results are returned rather than the result itself.
         */
-        return mysqli_num_rows($Result);
+        return $Result['num_rows'];
 
     }
 
@@ -138,12 +136,10 @@ class RegistrationError extends Errors {
 
         $Result = mysqli_stmt_get_result($Statement);
 
-        mysqli_stmt_fetch($Statement);
-
         /*
         At the end of the method the number of results are returned rather than the result itself.
         */
-        return mysqli_num_rows($Result);
+        return $Result['num_rows'];
     }
 
 }
