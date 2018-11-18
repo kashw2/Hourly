@@ -40,6 +40,18 @@ session_start();
 
                 <h1 id='login-heading'>Login</h1>
 
+                <?php
+
+                    if($_SESSION['Error']) {
+
+                        echo '<p id="login-error">' . $_SESSION['Error'] . '</p>';
+
+                        unset($_SESSION['Error']);
+
+                    }
+
+                ?>
+
                 <form id='login-form' method='post' action='inc/actions/login.inc.php'>
                 
                     <input id='login-username' class='input' type='text' name='username' placeholder='Username:'> 
