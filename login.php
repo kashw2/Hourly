@@ -58,7 +58,7 @@ session_start();
 
                     <input id='login-password' class='input' type='password' name='password' placeholder='Password:'> 
 
-                    <input id='login-submit' type='submit' name='submit' value='Login'>
+                    <input id='login-submit' type='submit' value='Login'>
 
                     <a id='login-register' href='register.php'>Or Register your Company Here</a>
 
