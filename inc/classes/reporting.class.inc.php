@@ -1,8 +1,10 @@
 <?php
 
-/*
-This file is accountable for all reporting of errors, success etc
-*/
+/**
+ * This file is responsible for:
+ * Reporting of Errors and Data Logging of anything related to
+ * UX Actions that occour on the server
+ */
 
 class Reporting {
 
