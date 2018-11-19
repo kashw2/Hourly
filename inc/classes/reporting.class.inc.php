@@ -80,8 +80,6 @@ class Registration extends Reporting {
 
         mysqli_stmt_execute($Statement);
 
-        mysqli_stmt_bind_result($Statement, $AccountName);
-
         $Result = mysqli_stmt_get_result($Statement);
 
         /*
@@ -107,8 +105,6 @@ class Registration extends Reporting {
 
         mysqli_stmt_execute($Statement);
 
-        mysqli_stmt_bind_result($Statement, $AccountEmail);
-
         $Result = mysqli_stmt_get_result($Statement);
 
         /*
@@ -133,8 +129,6 @@ class Registration extends Reporting {
         );
 
         mysqli_stmt_execute($Statement);
-
-        mysqli_stmt_bind_result($Statement, $CompanyName);
 
         $Result = mysqli_stmt_get_result($Statement);
 
