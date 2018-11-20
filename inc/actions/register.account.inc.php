@@ -5,7 +5,6 @@ ob_start();
 chdir('../../');
 
 require_once('mysql.php');
-require_once('inc/classes/reporting.class.inc.php');
 
 session_start();
 
