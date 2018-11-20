@@ -4,6 +4,13 @@ ob_start();
 
 session_start();
 
+require_once('mysql.php');
+require_once('inc/classes/auth.class.inc.php');
+
+$Auth = new Authentication;
+
+$Auth->checkToken($conn);
+
 ?>
 <!DOCTYPE html>
 <html>
