@@ -2,42 +2,94 @@
 
 ob_start();
 
+session_start();
+
 chdir('../../');
 
 require_once('mysql.php');
 
-session_start();
-
-$RegError = new Registration;
-
 if(
-    isset($_POST['username'])
-&&  !empty($_POST['username'])
-&&  isset($_POST['password'])
+    !empty($_POST['username'])
 &&  !empty($_POST['password'])
 ) {
 
-    if($RegError->countRegistrantAccount($conn, $_POST['username']) > 0) {
+    $Statement = mysqli_prepare($conn, '
+    SELECT
+    COUNT(hourly.accounts.username)
+    FROM hourly.accounts
+    WHERE hourly.accounts.username = ?;
+    ');
+
+    mysqli_stmt_bind_param($Statement,
+    's',
+    $_POST['username']
+    );
+
+    mysqli_stmt_execute($Statement);
+
+    mysqli_stmt_bind_result($Statement, $Result['count']);
+
+    mysqli_stmt_fetch($Statement);
+
+    $Statement->close();
+
+    if($Result['count'] > 0) {
 
         $_SESSION['Error'] = "Error: Account already exists.";
 
         header('Location: ../../setup.php?token=' . session_id());
 
-        die();
-
     } else {
 
-        if($RegError->countRegistrantEmail($conn, $_SESSION['Email']) > 0) {
+        $Statement = mysqli_prepare($conn, '
+        SELECT
+        COUNT(hourly.accounts.email)
+        FROM hourly.accounts
+        WHERE hourly.accounts.email = ?;
+        ');
+
+        mysqli_stmt_bind_param($Statement,
+        's',
+        $_SESSION['User']['Email']
+        );
+
+        mysqli_stmt_execute($Statement);
+
+        mysqli_stmt_bind_result($Statement, $Result['count']);
+
+        mysqli_stmt_fetch($Statement);
+
+        $Statement->close();
+
+        if($Result['count'] > 0) {
 
             $_SESSION['Error'] = "Error: Account already exists.";
 
             header('Location: ../../setup.php?token=' . session_id());
 
-            die();
-
         } else {
 
-            if($RegError->countRegistrantCompany($conn, $_SESSION['User']['Company']) > 0) {
+            $Statement = mysqli_prepare($conn, '
+            SELECT
+            COUNT(hourly.accounts.company)
+            FROM hourly.accounts
+            WHERE hourly.accounts.company = ?;
+            ');
+
+            mysqli_stmt_bind_param($Statement,
+            's',
+            $_SESSION['User']['Company']
+            );
+
+            mysqli_stmt_execute($Statement);
+
+            mysqli_stmt_bind_result($Statement, $Result['count']);
+
+            mysqli_stmt_fetch($Statement);
+
+            $Statement->close();
+
+            if($Result['count'] > 0) {
 
                 $_SESSION['Error'] = "Error: This company already has a registrant.";
 
@@ -48,19 +100,19 @@ if(
                 $Statement = mysqli_prepare($conn, '
                 INSERT INTO
                 hourly.accounts (
-                    hourly.accounts.id,
-                    hourly.accounts.username,
-                    hourly.accounts.password,
-                    hourly.accounts.email,
-                    hourly.accounts.company,
-                    hourly.accounts.position
+                hourly.accounts.id,
+                hourly.accounts.username,
+                hourly.accounts.password,
+                hourly.accounts.email,
+                hourly.accounts.company,
+                hourly.accounts.position
                 ) VALUES (
-                    DEFAULT,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?
+                DEFAULT,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?
                 )
                 ');
 
@@ -81,17 +133,13 @@ if(
 
                     header('Location: ../../setup.php?token=' . session_id());
 
-                    die();
-
                 } else {
+
+                    unset($_SESSION['User']);
 
                     header('Location: ../../home.php');
 
-                    unset($_SESSION['Email']);
-
                 }
-
-                die();
 
             }
 
@@ -101,23 +149,59 @@ if(
 
 } else {
 
-    if($RegError->countRegistrantAccount($conn, $_POST['username']) > 0) {
+    $Statement = mysqli_prepare($conn, '
+    SELECT
+    COUNT(hourly.accounts.username)
+    FROM hourly.accounts
+    WHERE hourly.accounts.username = ?;
+    ');
+
+    mysqli_stmt_bind_param($Statement,
+    's',
+    $_POST['username']
+    );
+
+    mysqli_stmt_execute($Statement);
+
+    mysqli_stmt_bind_result($Statement, $Result['count']);
+
+    mysqli_stmt_fetch($Statement);
+
+    $Statement->close();
+
+    if($Result['count'] > 0) {
 
         $_SESSION['Error'] = "Error: Account already exists.";
 
         header('Location: ../../setup.php?token=' . session_id());
 
-        die();
-
     } else {
 
-        if($RegError->countRegistrantEmail($conn, $_SESSION['Email']) > 0) {
+        $Statement = mysqli_prepare($conn, '
+        SELECT
+        COUNT(hourly.accounts.email)
+        FROM hourly.accounts
+        WHERE hourly.accounts.email = ?;
+        ');
+
+        mysqli_stmt_bind_param($Statement,
+        's',
+        $_SESSION['User']['Email']
+        );
+
+        mysqli_stmt_execute($Statement);
+
+        mysqli_stmt_bind_result($Statement, $Result['count']);
+
+        mysqli_stmt_fetch($Statement);
+
+        $Statement->close();
+
+        if($Result['count'] > 0) {
 
             $_SESSION['Error'] = "Error: Account already exists.";
 
             header('Location: ../../setup.php?token=' . session_id());
-
-            die();
 
         } else {
 
@@ -132,7 +216,27 @@ if(
                 &&  $_POST['autogen'] == "on"
                 ) {
 
-                    if($RegError->countRegistrantCompany($conn, $_SESSION['User']['Company']) > 0) {
+                    $Statement = mysqli_prepare($conn, '
+                    SELECT
+                    COUNT(hourly.accounts.company)
+                    FROM hourly.accounts
+                    WHERE hourly.accounts.company = ?;
+                    ');
+
+                    mysqli_stmt_bind_param($Statement,
+                    's',
+                    $_SESSION['User']['Company']
+                    );
+
+                    mysqli_stmt_execute($Statement);
+
+                    mysqli_stmt_bind_result($Statement, $Result['count']);
+
+                    mysqli_stmt_fetch($Statement);
+
+                    $Statement->close();
+
+                    if($Result['count'] > 0) {
 
                         $_SESSION['Error'] = "Error: This company already has a registrant.";
 
@@ -152,19 +256,19 @@ if(
                         $Statement = mysqli_prepare($conn, '
                         INSERT INTO
                         hourly.accounts (
-                            hourly.accounts.id,
-                            hourly.accounts.username,
-                            hourly.accounts.password,
-                            hourly.accounts.email,
-                            hourly.accounts.company,
-                            hourly.accounts.position
+                        hourly.accounts.id,
+                        hourly.accounts.username,
+                        hourly.accounts.password,
+                        hourly.accounts.email,
+                        hourly.accounts.company,
+                        hourly.accounts.position
                         ) VALUES (
-                            DEFAULT,
-                            ?,
-                            ?,
-                            ?,
-                            ?,
-                            ?
+                        DEFAULT,
+                        ?,
+                        ?,
+                        ?,
+                        ?,
+                        ?
                         )
                         ');
 
@@ -185,17 +289,13 @@ if(
 
                             header('Location: ../../setup.php?token=' . session_id());
 
-                            die();
-
                         } else {
+
+                            unset($_SESSION['User']);
 
                             header('Location: ../../home.php');
 
-                            unset($_SESSION['Email']);
-
                         }
-
-                        die();
 
                     }
 
@@ -206,8 +306,6 @@ if(
                 $_SESSION['Error'] = "Error: Input fields empty";
 
                 header('Location: ../../setup.php?token=' . session_id());
-
-                die();
 
             }
 
