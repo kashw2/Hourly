@@ -27,6 +27,22 @@ html {
 
 				background-color: #454545;
 
+				#content-heading {
+					position: absolute;
+
+					top: 40px;
+					left: 20px;
+
+					color: #b5b5b5;
+
+					height: auto;
+					width: auto;
+
+					font-family: 'Lato', sans-serif;
+					font-weight: 100;
+					font-size: 35px;
+				}
+
 				#content-setup-intro {
 					position: relative;
 
