@@ -40,7 +40,7 @@ if(
 
     mysqli_stmt_fetch($Statement);
 
-    $Statement->close();
+    mysqli_stmt_close($Statement);
 
     if($Result['count'] < 1) {
 
@@ -92,7 +92,7 @@ if(
 
             mysqli_stmt_execute($Statement);
 
-            $Statement->close();
+            mysqli_stmt_close($Statement);
 
         } else {
 
@@ -140,7 +140,7 @@ if(
 
             mysqli_stmt_execute($Statement);
 
-            $Statement->close();
+            mysqli_stmt_close($Statement);
 
         }
 

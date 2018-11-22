@@ -40,7 +40,7 @@ class Authentication {
 
         mysqli_stmt_fetch($Statement);
 
-        $Statement->close();
+        mysqli_stmt_close($Statement);
 
         if(!empty($Result['username'])) {
 
@@ -74,7 +74,7 @@ class Authentication {
 
     if($Result == session_id()) {
 
-        $Statement->close();
+        mysqli_stmt_close($Statement);
 
         self::getUserByToken($Connection);
 

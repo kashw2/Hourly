@@ -31,7 +31,7 @@ if(
 
     mysqli_stmt_fetch($Statement);
 
-    $Statement->close();
+    mysqli_stmt_close($Statement);
 
     if($Result['count'] > 0) {
 
@@ -59,7 +59,7 @@ if(
 
         mysqli_stmt_fetch($Statement);
 
-        $Statement->close();
+        mysqli_stmt_close($Statement);
 
         if($Result['count'] > 0) {
 
@@ -87,7 +87,7 @@ if(
 
             mysqli_stmt_fetch($Statement);
 
-            $Statement->close();
+            mysqli_stmt_close($Statement);
 
             if($Result['count'] > 0) {
 
@@ -167,7 +167,7 @@ if(
 
     mysqli_stmt_fetch($Statement);
 
-    $Statement->close();
+    mysqli_stmt_close($Statement);
 
     if($Result['count'] > 0) {
 
@@ -195,7 +195,7 @@ if(
 
         mysqli_stmt_fetch($Statement);
 
-        $Statement->close();
+        mysqli_stmt_close($Statement);
 
         if($Result['count'] > 0) {
 
@@ -234,7 +234,7 @@ if(
 
                     mysqli_stmt_fetch($Statement);
 
-                    $Statement->close();
+                    mysqli_stmt_close($Statement);
 
                     if($Result['count'] > 0) {
 

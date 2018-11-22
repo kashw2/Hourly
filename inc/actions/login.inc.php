@@ -29,7 +29,7 @@ if(!empty($_POST['username'] && !empty($_POST['password']))) {
 
     mysqli_stmt_fetch($Statement);
 
-    $Statement->close();
+    mysqli_stmt_close($Statement);
 
     if($Result['username'] == $_POST['username']) {
 
@@ -64,7 +64,7 @@ if(!empty($_POST['username'] && !empty($_POST['password']))) {
 
         mysqli_stmt_fetch($Statement);
 
-        $Statement->close();
+        mysqli_stmt_close($Statement);
 
         if($Result['count'] < 1) {
 
@@ -93,7 +93,7 @@ if(!empty($_POST['username'] && !empty($_POST['password']))) {
 
             mysqli_stmt_execute($Statement);
 
-            $Statement->close();
+            mysqli_stmt_close($Statement);
 
         }
 
@@ -118,7 +118,7 @@ if(!empty($_POST['username'] && !empty($_POST['password']))) {
 
             mysqli_stmt_execute($Statement);
 
-            $Statement->close();
+            mysqli_stmt_close($Statement);
 
         }
 
