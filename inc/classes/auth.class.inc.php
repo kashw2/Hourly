@@ -15,6 +15,43 @@ class Authentication {
         echo __CLASS__ . ' class destroyed.';
     }
 
+    public function getUserByToken($Connection) {
+
+        $Statement = mysqli_prepare($Connection, '
+        SELECT
+        hourly.accounts.username
+        FROM hourly.accounts
+        WHERE hourly.accounts.id = (
+            SELECT
+            hourly.sessions.userid
+            FROM hourly.sessions
+            WHERE hourly.sessions.token = ?
+        );
+        ');
+
+        mysqli_stmt_bind_param($Statement,
+        's',
+        session_id()
+        );
+
+        mysqli_stmt_execute($Statement);
+
+        mysqli_stmt_bind_result($Statement, $Result['username']);
+
+        mysqli_stmt_fetch($Statement);
+
+        $Statement->close();
+
+        if(!empty($Result['username'])) {
+
+            $_SESSION['User']['Username'] = $Result['username'];
+
+            return;
+
+        }
+
+    }
+
     public function checkToken($Connection) {
 
     $Statement = mysqli_prepare($Connection, '
@@ -38,6 +75,8 @@ class Authentication {
     if($Result == session_id()) {
 
         $Statement->close();
+
+        self::getUserByToken($Connection);
 
         header('Location: home.php');
 
