@@ -4,6 +4,15 @@ ob_start();
 
 session_start();
 
+require_once('mysql.php');
+require_once('inc/classes/auth.class.inc.php');
+require_once('inc/classes/content.class.inc.php');
+
+$Auth = new Authentication;
+$Content = new Content;
+
+$Auth->getUserByToken($conn);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +36,7 @@ session_start();
     
         <div id='grid-header'>
 
-            <a href="index.php">
+            <a href="home.php">
                 <object data='img/materialicon/baseline-alarm_on-24px.svg'></object>
                 <h3 id='header-heading'>HOURLY</h3>
             </a>
@@ -38,7 +47,33 @@ session_start();
 
         <div id='grid-content'>
 
-            <h1 id='content-heading'>Welcome to Hourly</h1>
+            <div id='content-greeting-container'>
+
+                <img id='greeting-avatar' src=<?php echo 'users/' . $Content->getUserId($conn, $_SESSION['User']['Username']) . '/images/avatar.png'; ?> >
+
+                <p id='greeting-intro'>Welcome</h1>
+
+                <h2 id='greeting-username' class='greeting user-information'><?php echo $_SESSION['User']['Username']; ?></h2>
+
+                <h2 id='greeting-company' class='greeting user-information'><?php echo $Content->getUserCompany($conn, $_SESSION['User']['Username']); ?></h2>
+
+                <h2 id='greeting-position' class='greeting user-information'><?php echo $Content->getUserPosition($conn, $_SESSION['User']['Username']); ?></h2>
+
+            </div>
+
+            <div id='content-news-wrapper'>
+
+                <div id='news-piece-container'>
+                
+                    <?php
+
+                        $Content->generateNews($conn);
+
+                    ?>
+
+                </div>
+
+            </div>
         
         </div>
 
