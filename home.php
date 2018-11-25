@@ -55,7 +55,11 @@ $Auth->getUserByToken($conn);
 
                 <h2 id='greeting-username' class='greeting user-information'><?php echo $_SESSION['User']['Username']; ?></h2>
 
+                <br>
+
                 <h2 id='greeting-company' class='greeting user-information'><?php echo $Content->getUserCompany($conn, $_SESSION['User']['Username']); ?></h2>
+
+                <br>
 
                 <h2 id='greeting-position' class='greeting user-information'><?php echo $Content->getUserPosition($conn, $_SESSION['User']['Username']); ?></h2>
 
