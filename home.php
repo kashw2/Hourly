@@ -51,7 +51,7 @@ $Auth->getUserByToken($conn);
 
                 <img id='greeting-avatar' src=<?php echo 'users/' . $Content->getUserId($conn, $_SESSION['User']['Username']) . '/images/avatar.png'; ?> >
 
-                <p id='greeting-intro'>Welcome</h1>
+                <p id='greeting-intro'>Welcome to Hourly</h1>
 
                 <h2 id='greeting-username' class='greeting user-information'><?php echo $_SESSION['User']['Username']; ?></h2>
 

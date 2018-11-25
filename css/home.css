@@ -19,7 +19,7 @@ html {
         html body #grid-container #grid-content #content-greeting-container {
           position: relative;
           height: 130px;
-          width: 400px;
+          width: 440px;
           margin: 20px 10px 0px 50px;
           overflow: hidden; }
           html body #grid-container #grid-content #content-greeting-container #greeting-avatar {
