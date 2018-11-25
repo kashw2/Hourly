@@ -160,7 +160,7 @@ class Content {
 
         $News = self::getNews($Connection);
 
-        // Make sure content exists so we don't have hte '//' problem
+        // Make sure content exists so we don't have the '//' problem
         if(!empty($News['content'])) {
 
             for($i = 0; $i < self::getNewsCount($Connection); $i++) {
