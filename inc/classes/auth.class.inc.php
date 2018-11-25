@@ -54,35 +54,39 @@ class Authentication {
 
     public function checkToken($Connection) {
 
-    $Statement = mysqli_prepare($Connection, '
-    SELECT
-    hourly.sessions.token
-    FROM hourly.sessions
-    WHERE hourly.sessions.token = ?
-    ');
+        $Statement = mysqli_prepare($Connection, '
+        SELECT
+        hourly.sessions.token
+        FROM hourly.sessions
+        WHERE hourly.sessions.token = ?
+        ');
 
-    mysqli_stmt_bind_param($Statement,
-    's',
-    session_id()
-    );
+        mysqli_stmt_bind_param($Statement,
+        's',
+        session_id()
+        );
 
-    mysqli_stmt_execute($Statement);
+        mysqli_stmt_execute($Statement);
 
-    mysqli_stmt_bind_result($Statement, $Result);
+        mysqli_stmt_bind_result($Statement, $Result);
 
-    mysqli_stmt_fetch($Statement);
+        mysqli_stmt_fetch($Statement);
 
-    if($Result == session_id()) {
+        if($Result == session_id()) {
 
-        mysqli_stmt_close($Statement);
+            mysqli_stmt_close($Statement);
 
-        self::getUserByToken($Connection);
+            self::getUserByToken($Connection);
 
-        header('Location: home.php');
+            header('Location: home.php');
 
-    } 
+        } else {
 
-}
+            return;
+
+        }
+
+    }
 
 }
 
