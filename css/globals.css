@@ -18,71 +18,71 @@ html {
     html body #grid-container {
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: 50px 1fr;
+      grid-template-rows: 40px 1fr;
       height: 100%;
       width: 100%; }
       html body #grid-container #grid-header {
         display: grid;
         grid-column: auto;
         grid-row: 1;
-        grid-template-columns: 120px 1fr auto auto auto auto auto;
+        grid-template-columns: 120px 1fr auto auto auto auto;
         grid-template-rows: 1fr;
-        height: 50px;
+        height: 40px;
         width: 100%;
         background-color: #4a4a4a;
         overflow: hidden; }
-        html body #grid-container #grid-header object {
+        html body #grid-container #grid-header a {
           grid-column: 1;
-          grid-row: auto;
-          position: relative;
-          top: 10px;
-          bottom: 10px;
-          left: 20px;
-          height: 30px;
-          width: 30px;
-          padding-right: 10px; }
-        html body #grid-container #grid-header #header-heading {
-          grid-column: 1;
-          grid-row: auto;
-          position: relative;
-          bottom: 25px;
-          left: 60px;
-          height: 16px;
-          color: #ffffff;
-          text-align: left;
-          font-family: 'Lato', sans-serif;
-          font-size: 20px;
-          font-weight: 300;
-          font-style: italic;
-          letter-spacing: 1px;
-          padding-right: 10px;
-          margin: 0px; }
-        html body #grid-container #grid-header #header-nav-news {
-          grid-column: 3;
-          grid-row: auto; }
+          grid-row: 1; }
+          html body #grid-container #grid-header a object {
+            grid-column: 1;
+            grid-row: 1;
+            position: relative;
+            top: 5px;
+            bottom: 10px;
+            left: 20px;
+            height: 30px;
+            width: 30px;
+            padding-right: 10px; }
+          html body #grid-container #grid-header a #header-heading {
+            grid-column: 1;
+            grid-row: 1;
+            position: relative;
+            bottom: 24px;
+            left: 60px;
+            height: 16px;
+            color: #ffffff;
+            text-align: left;
+            font-family: 'Lato', sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 1px;
+            padding-right: 10px;
+            margin: 0px; }
         html body #grid-container #grid-header #header-nav-timeoff {
-          grid-column: 4;
-          grid-row: auto; }
+          grid-column: 3;
+          grid-row: 1; }
         html body #grid-container #grid-header #header-nav-roster {
+          grid-column: 4;
+          grid-row: 1; }
+        html body #grid-container #grid-header #header-nav-admin {
           grid-column: 5;
-          grid-row: auto; }
-        html body #grid-container #grid-header #header-nav-employees {
-          grid-column: 6;
-          grid-row: auto; }
+          grid-row: 1; }
         html body #grid-container #grid-header #header-nav-login {
-          grid-column: 7;
-          grid-row: auto; }
+          grid-column: 6;
+          grid-row: 1; }
         html body #grid-container #grid-header #header-nav-logout {
-          grid-column: 7;
-          grid-row: auto; }
+          grid-column: 6;
+          grid-row: 1; }
 
 .nav {
   color: #ffffff;
   font-family: 'Lato', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 300;
   font-style: normal;
-  padding: 15px 20px 5px 20px; }
+  padding: 10px 10px 5px 10px; }
   .nav:hover, .nav:active, .nav:focus {
     color: #00ff88;
     background-color: rgba(37, 37, 37, 0.4); }
@@ -90,10 +90,10 @@ html {
       display: block;
       position: relative;
       content: "";
-      top: 15px;
+      top: 12px;
       background-color: #ffa500;
       height: 1px;
       width: auto;
-      margin: 0px -20px 0px -20px; }
+      margin: 0px -10px 0px -10px; }
 
 /*# sourceMappingURL=globals.css.map */
