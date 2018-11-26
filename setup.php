@@ -28,7 +28,7 @@ if($_GET['token'] != session_id()) {
     <meta charset='utf-8' />
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 
-    <title>Hourly - ERMS</title>
+    <title>Hourly - Setup</title>
 
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
