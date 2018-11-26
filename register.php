@@ -6,8 +6,10 @@ session_start();
 
 require_once('mysql.php');
 require_once('inc/classes/auth.class.inc.php');
+require_once('inc/classes/content.class.inc.php');
 
 $Auth = new Authentication;
+$Content = new Content;
 
 $Auth->checkToken($conn);
 
@@ -34,10 +36,11 @@ $Auth->checkToken($conn);
     
         <div id='grid-header'>
 
-            <a href="index.php">
-                <object data='img/materialicon/baseline-alarm_on-24px.svg'></object>
-                <h3 id='header-heading'>HOURLY</h3>
-            </a>
+            <?php
+
+                $Content->applyHeader($conn);
+
+            ?>
             
         </div>
 

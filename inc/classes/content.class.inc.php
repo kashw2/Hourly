@@ -6,12 +6,87 @@
 
 class Content {
 
-    public function __construct() {
-        echo __CLASS__ . ' class initialised.';
-    }
+    public function applyHeader($Connection) {
 
-    public function __destruct() {
-        echo __CLASS__ . ' class destroyed.';
+        echo "
+
+            <a href='home.php'>
+                <object data='img/materialicon/baseline-alarm_on-24px.svg'></object>
+                <h3 id='header-heading'>HOURLY</h3>
+            </a>
+
+        ";
+
+        /**
+         * Refering to the PHP Notice:
+         * PHP Switch statements default to their default case if a variable is not parsed as a condition to the statement
+         */
+
+        switch(self::getUserPosition($Connection, $_SESSION['User']['Username'])) {
+            case "Chief Executive Officer":
+
+                echo "
+                
+                    <a id='header-nav-logout' class='nav' href='inc/actions/logout.inc.php'>Logout</a>
+                    <a id='header-nav-roster' class='nav' href='roster.php'>Roster</a>
+                    <a id='header-nav-admin' class='nav' href='admin.php'>Admin</a>
+                    <a id='header-nav-timeoff' class='nav' href='timeoff.php'>Time Off</a>
+
+                ";
+
+            break;
+            case "Employee":
+
+                echo "
+
+                    <a id='header-nav-logout' class='nav' href='inc/actions/logout.inc.php'>Logout</a>
+                    <a id='header-nav-roster' class='nav' href='roster.php'>Roster</a>
+                    <a id='header-nav-timeoff' class='nav' href='timeoff.php'>Time Off</a>
+
+                ";
+
+            break;
+            default:
+
+                /**
+                 * 
+                 * We don't want users who are on a page that doesn't require the user to be logged in to have the same header/access as one who is
+                 * This will check the users URL prior to displaying the header
+                 * 
+                 */
+
+                $Filename = preg_replace('/\/Hourly\//', '', $_SERVER['SCRIPT_NAME']);
+
+                switch($Filename) {
+                    case "login.php":
+
+                        return;
+
+                    break;
+                    case "register.php":
+
+                        return;
+
+                    break;
+                    case "setup.php":
+
+                        return;
+
+                    break;
+                    case "index.php":
+
+                        echo "
+
+                            <a id='header-nav-login' class='nav' href='inc/actions/login.inc.php'>Login</a>
+
+                        ";
+
+                    break;
+                }
+
+            break;
+        }
+
     }
 
     public function getUserId($Connection, $Username) {
@@ -70,9 +145,14 @@ class Content {
 
         $Statement = mysqli_prepare($Connection, '
         SELECT
-        hourly.accounts.position
-        FROM hourly.accounts
-        WHERE hourly.accounts.username = ?;
+        hourly.positions.position
+        FROM hourly.positions
+        WHERE hourly.positions.id = (
+            SELECT
+            hourly.accounts.position
+            FROM hourly.accounts
+            WHERE hourly.accounts.username = ?
+        );
         ');
 
         mysqli_stmt_bind_param($Statement,

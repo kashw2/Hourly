@@ -36,12 +36,11 @@ $Auth->getUserByToken($conn);
     
         <div id='grid-header'>
 
-            <a href="home.php">
-                <object data='img/materialicon/baseline-alarm_on-24px.svg'></object>
-                <h3 id='header-heading'>HOURLY</h3>
-            </a>
-            
-                <a id='header-nav-logout' class='nav'>LOGOUT</a>
+            <?php
+
+                $Content->applyHeader($conn);
+
+            ?>
             
         </div>
 
