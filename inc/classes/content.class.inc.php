@@ -10,7 +10,7 @@ class Content {
 
         echo "
 
-            <a href='home.php'>
+            <a href='index.php'>
                 <object data='img/materialicon/baseline-alarm_on-24px.svg'></object>
                 <h3 id='header-heading'>HOURLY</h3>
             </a>
