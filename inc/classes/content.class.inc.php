@@ -4,6 +4,8 @@
  * Content Classs
  */
 
+require_once('auth.class.inc.php');
+
 class Content {
 
     public function applyHeader($Connection) {
@@ -16,6 +18,22 @@ class Content {
             </a>
 
         ";
+
+        if(Authentication::returnUserToken($Connection) != session_id()) {
+        
+            if(preg_replace('/\/Hourly\//', '', $_SERVER['SCRIPT_NAME']) == "index.php") {
+
+                echo "
+
+                    <a id='header-nav-login' class='nav' href='inc/actions/login.inc.php'>Login</a>
+
+                ";
+
+            }
+
+            return;
+
+        }
 
         /**
          * Refering to the PHP Notice:
@@ -268,6 +286,80 @@ class Content {
             }
 
         }
+
+    }
+
+    public function generateRoster($Connection) {
+
+        // This function echos the same problem as getNews() when querying
+
+        /**
+         * For now this will just have to be regular mysqli_query
+         * There's no security risk as it isn't being passed/bound by params
+         * This took far too long to get to actually work to be bothered to fix right now
+         * !FIXME
+         */
+        $Statement = mysqli_query($Connection, '
+        SELECT
+        hourly.roster.employee,
+        hourly.roster.start,
+        hourly.roster.finish,
+        hourly.roster.location,
+        hourly.roster.notes
+        FROM hourly.roster;
+        ');
+
+        $Result = mysqli_fetch_array($Statement);
+
+        $i = 0;
+
+        do {
+
+            $Results['employee'][$i] = $Result['employee'];
+            $Results['start'][$i] = $Result['start'];
+            $Results['finish'][$i] = $Result['finish'];
+            $Results['location'][$i] = $Result['location'];
+            $Results['notes'][$i] = $Result['notes'];
+
+            $i++;
+
+        } while($Result = mysqli_fetch_array($Statement));
+
+        $Days = array("Days" => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']);
+
+        echo "
+        
+            <table id='content-roster'>
+                <tbody>
+                <tr>
+                    <th></th>
+                    
+                    
+        ";
+
+        for($n = 0; $n < count($Days['Days']); $n++) {
+
+            echo "<th>" . $Days['Days'][$n] . "</th>";
+
+        }
+
+        echo "
+        
+                    </tr>
+            
+        ";
+        
+        for($a = 0; $a < count($Results['employee']); $a++) {
+
+            echo "<tr><td>" . $Results['employee'][$a] . "</td></tr>";
+
+        }
+        
+        echo "
+                </tbody>
+            </table>
+
+        ";
 
     }
 

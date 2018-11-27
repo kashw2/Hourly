@@ -14,11 +14,13 @@ if(!empty($_POST['username'] && !empty($_POST['password']))) {
     SELECT
     hourly.accounts.username
     FROM hourly.accounts
-    WHERE hourly.accounts.username = ? AND hourly.accounts.password LIKE(?);
+    WHERE hourly.accounts.username = ? OR hourly.accounts.email = ?
+    AND hourly.accounts.password LIKE(?);
     ');
 
     mysqli_stmt_bind_param($Statement, 
-    'ss',
+    'sss',
+    $_POST['username'],
     $_POST['username'],
     md5($_POST['password'])
     );
@@ -31,7 +33,7 @@ if(!empty($_POST['username'] && !empty($_POST['password']))) {
 
     mysqli_stmt_close($Statement);
 
-    if($Result['username'] == $_POST['username']) {
+    if(!empty($Result['username'])) {
 
         // The user has entered the correct information however we now need to update their unique token
 
@@ -46,12 +48,13 @@ if(!empty($_POST['username'] && !empty($_POST['password']))) {
             SELECT
             hourly.accounts.id
             FROM hourly.accounts
-            WHERE hourly.accounts.username = ?
+            WHERE hourly.accounts.username = ? OR hourly.accounts.email = ?
         );
         ');
 
         mysqli_stmt_bind_param($Statement,
-        's',
+        'ss',
+        $_POST['username'],
         $_POST['username']
         );
 
@@ -79,14 +82,15 @@ if(!empty($_POST['username'] && !empty($_POST['password']))) {
                 SELECT
                 hourly.accounts.id
                 FROM hourly.accounts
-                WHERE hourly.accounts.username = ?
+                WHERE hourly.accounts.username = ? OR hourly.accounts.email = ?
             ),
             ?
             );
             ');
 
             mysqli_stmt_bind_param($Statement,
-            'ss',
+            'sss',
+            $_POST['username'],
             $_POST['username'],
             session_id()
             );
@@ -106,13 +110,14 @@ if(!empty($_POST['username'] && !empty($_POST['password']))) {
                 SELECT 
                 hourly.accounts.id
                 FROM hourly.accounts
-                WHERE hourly.accounts.username = ?
+                WHERE hourly.accounts.username = ? OR hourly.accounts.email = ?
             );
             ');
 
             mysqli_stmt_bind_param($Statement,
-            'ss',
+            'sss',
             session_id(),
+            $_POST['username'],
             $_POST['username']
             );
 
