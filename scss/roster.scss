@@ -23,22 +23,17 @@ html {
 				display: grid;
 
 				grid-template-columns: 1fr;
-				grid-template-rows: 30px 1fr;
+				grid-template-rows: 1fr;
 
 				grid-column: auto;
 				grid-row: 2;
 
 				background-color: #454545;
 
-				#content-options {
-					grid-column: 1;
-					grid-row: 1;
-				}
-
 				#content-roster-wrapper {
 					position: relative;
 
-					top: 10px;
+					top: 0px;
 
 					height: 100%;
 					width: 100%;
@@ -50,13 +45,15 @@ html {
 					table {
 						display: table;
 
-						height: 90%;
+						height: 95%;
 						width: 100%;
 
 						border-collapse: collapse;
 
 						th {
 							position: relative;
+
+							top: -5px;
 
 							color: #ffffff;
 
@@ -67,10 +64,12 @@ html {
 							font-weight: 300;
 							font-style: normal;
 
-							padding: 5px 0px 20px 0px;
+							margin-bottom: 20px;
 						}
 
 						td {
+							width: 14.5%;
+
 							color: #ffffff;
 
 							text-align: left;
