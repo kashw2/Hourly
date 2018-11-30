@@ -304,8 +304,7 @@ class Content {
         hourly.roster.employee,
         hourly.roster.start,
         hourly.roster.finish,
-        hourly.roster.location,
-        hourly.roster.notes
+        hourly.roster.location
         FROM hourly.roster;
         ');
 
@@ -319,7 +318,6 @@ class Content {
             $Results['start'][$i] = $Result['start'];
             $Results['finish'][$i] = $Result['finish'];
             $Results['location'][$i] = $Result['location'];
-            $Results['notes'][$i] = $Result['notes'];
 
             $i++;
 
@@ -329,10 +327,11 @@ class Content {
 
         echo "
         
-            <table id='content-roster'>
-                <tbody>
-                <tr>
-                    <th></th>
+            <div id='content-roster-wrapper'>
+                <table>
+                    <tbody>
+                    <tr>
+                        <th></th>
                     
                     
         ";
@@ -348,16 +347,43 @@ class Content {
                     </tr>
             
         ";
-        
+
+        /**
+         * Removed duplicate entries from the array to avoid double ups in the roster
+         */
+        $Results['employee'] = array_unique($Results['employee'], SORT_REGULAR);
+
         for($a = 0; $a < count($Results['employee']); $a++) {
 
-            echo "<tr><td>" . $Results['employee'][$a] . "</td></tr>";
+            /**
+             * Create a new date using the UNIX DATETIME stored in the database
+             */
+
+            $StartTime[$a] = date_create($Results['start'][$a]);
+            $EndTime[$a] = date_create($Results['finish'][$a]);
+
+            echo "<tr>
+                    <td>" . $Results['employee'][$a] . "</td>
+                    <td>
+                        <div class='roster-content-container'>
+                            <p class='roster-content-start'>" . $StartTime[$a]->format("h:m") . " Start</p>
+                            <br>
+                            <p class='roster-content-finish'>" . $EndTime[$a]->format("h:m") . " Finish</p>
+                            <br>
+                            <p class='roster-content-location'>Location: " . $Results['location'][$a] . "</p>
+                            <br>
+                        </div>
+                    </td>
+                </tr>
+                
+            ";
 
         }
         
         echo "
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
 
         ";
 

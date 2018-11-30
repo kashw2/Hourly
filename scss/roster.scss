@@ -1,0 +1,138 @@
+@import 'partials/_partials.scss';
+
+html {
+	height: 100%;
+	width: 100%;
+
+	overflow: hidden;
+
+	body {
+		height: 100%;
+		width: 100%;
+
+		#grid-container {
+			display: grid;
+
+			grid-template-columns: 1fr;
+			grid-template-rows: 40px 1fr;
+
+			height: 100%;
+			width: 100%;
+
+			#grid-content {
+				display: grid;
+
+				grid-template-columns: 1fr;
+				grid-template-rows: 30px 1fr;
+
+				grid-column: auto;
+				grid-row: 2;
+
+				background-color: #454545;
+
+				#content-options {
+					grid-column: 1;
+					grid-row: 1;
+				}
+
+				#content-roster-wrapper {
+					position: relative;
+
+					top: 10px;
+
+					height: 100%;
+					width: 100%;
+
+					border-top: 1px groove #ffffff;
+
+					overflow: hidden;
+
+					table {
+						display: table;
+
+						height: 90%;
+						width: 100%;
+
+						border-collapse: collapse;
+
+						th {
+							position: relative;
+
+							color: #ffffff;
+
+							text-align: left;
+
+							font-family: 'Lato', sans-serif;
+							font-size: inherit;
+							font-weight: 300;
+							font-style: normal;
+
+							padding: 5px 0px 20px 0px;
+						}
+
+						td {
+							color: #ffffff;
+
+							text-align: left;
+
+							font-family: 'Open Sans', sans-serif;
+							font-size: 14px;
+							font-weight: 100;
+							font-style: normal;
+						}
+						.roster-content-container {
+							.roster-content-start {
+								position: relative;
+
+								display: inline;
+
+								font-family: 'Open Sans', sans-serif;
+								font-size: 12px;
+								font-weight: 100;
+								font-style: normal;
+
+								margin: 0;
+							}
+							.roster-content-finish {
+								position: relative;
+
+								display: inline;
+
+								font-family: 'Open Sans', sans-serif;
+								font-size: 12px;
+								font-weight: 100;
+								font-style: normal;
+
+								margin: 0;
+							}
+							.roster-content-location {
+								position: relative;
+
+								display: inline;
+
+								font-family: 'Open Sans', sans-serif;
+								font-size: 12px;
+								font-weight: 100;
+								font-style: normal;
+
+								margin: 0;
+							}
+							.roster-content-notes {
+								position: relative;
+
+								display: inline;
+
+								font-family: 'Open Sans', sans-serif;
+								font-size: 12px;
+								font-weight: 100;
+								font-style: normal;
+
+								margin: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
