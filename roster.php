@@ -46,10 +46,6 @@ $Auth->getUserByToken($conn);
 
         <div id='grid-content'>
 
-            <div id='content-options'>
-
-            </div>
-
             <?php
 
                 $Content->generateRoster($conn);
