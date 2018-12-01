@@ -323,8 +323,6 @@ class Content {
 
         } while($Result = mysqli_fetch_array($Statement));
 
-        $Days = array("Days" => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']);
-
         echo "
         
             <div id='content-roster-wrapper'>
@@ -332,51 +330,86 @@ class Content {
                     <tbody>
                     <tr>
                         <th></th>
-                    
-                    
-        ";
-
-        for($n = 0; $n < count($Days['Days']); $n++) {
-
-            echo "<th>" . $Days['Days'][$n] . "</th>";
-
-        }
-
-        echo "
-        
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                        <th>Sunday</th>
                     </tr>
             
         ";
 
+        $EmployeeList = array($Results['employee']);
+        $EmployeeList = array_unique($Results['employee'], SORT_REGULAR);
+
         /**
-         * Removed duplicate entries from the array to avoid double ups in the roster
+         * The array must be sorted
+         * For some reason, when we create the array and remove duplicates above, we maintain their previous array key.
+         * This fixes that by sorting the array
          */
-        $Results['employee'] = array_unique($Results['employee'], SORT_REGULAR);
+        sort($EmployeeList);
 
-        for($a = 0; $a < count($Results['employee']); $a++) {
+        for($r = 0; $r < count($EmployeeList); $r++) {
 
-            /**
-             * Create a new date using the UNIX DATETIME stored in the database
-             */
+            echo "
+            
+                <tr>
+                <td>" . $EmployeeList[$r] . "</td>
 
-            $StartTime[$a] = date_create($Results['start'][$a]);
-            $EndTime[$a] = date_create($Results['finish'][$a]);
-
-            echo "<tr>
-                    <td>" . $Results['employee'][$a] . "</td>
-                    <td>
-                        <div class='roster-content-container'>
-                            <p class='roster-content-start'>" . $StartTime[$a]->format("h:m") . " Start</p>
-                            <br>
-                            <p class='roster-content-finish'>" . $EndTime[$a]->format("h:m") . " Finish</p>
-                            <br>
-                            <p class='roster-content-location'>Location: " . $Results['location'][$a] . "</p>
-                            <br>
-                        </div>
-                    </td>
-                </tr>
-                
             ";
+
+            for($i = 0; $i < count($Results['employee']); $i++) {
+
+                if($i < 7) {
+
+                    $Statement = mysqli_query($Connection, '
+                    SELECT
+                    hourly.roster.start,
+                    hourly.roster.finish,
+                    hourly.roster.location
+                    FROM hourly.roster
+                    WHERE hourly.roster.employee = "' . $EmployeeList[$r] . '";
+                    ');
+
+                    $Result = mysqli_fetch_array($Statement);
+
+                    $n = 0;
+
+                    do {
+
+                        $Results['start'][$n] = $Result['start'];
+                        $Results['finish'][$n] = $Result['finish'];
+                        $Results['location'][$n] = $Result['location'];
+
+                        $n++;
+
+                    } while($Result = mysqli_fetch_array($Statement));
+
+                    // printf("%s Starts @ %s <br>", $Results['employee'][$i], $Results['start'][$i]);
+
+                    $StartTime[$i] = date_create($Results['start'][$i]);
+                    $EndTime[$i] = date_create($Results['finish'][$i]);
+
+                    echo "
+                            <td>
+                                <div class='roster-content-container'>
+                                    <p class='roster-content-start'>" . $StartTime[$i]->format("h:m") . " Start</p>
+                                    <br>
+                                    <p class='roster-content-finish'>" . $EndTime[$i]->format("h:m") . " Finish</p>
+                                    <br>
+                                    <p class='roster-content-location'>Location: " . $Results['location'][$i] . "</p>
+                                    <br>
+                                </div>
+                            </td>
+                    ";
+
+                }
+
+            }
+
+            echo "</tr>";
 
         }
         
