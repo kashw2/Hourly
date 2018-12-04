@@ -46,12 +46,44 @@ $Auth->getUserByToken($conn);
 
         <div id='grid-content'>
 
-            <?php
+            <div id='content-search-container'>
 
-                $Content->generateRoster($conn);
+                <form id='search-form' method='post'>
+                    
+                    <?php
 
-            ?>
-        
+                        $Content->generateEmployees($conn);
+
+                        $Content->generateDays($conn);
+
+                        $Content->generateLocation($conn);
+
+                    ?>
+
+                    <input id='form-start' class='input' type='text' form='search-form' name='start' placeholder='Clock On'>
+                    <input id='form-end' class='input' type='text' form='search-form' name='end' placeholder='Clock Off'>
+                    <input id='form-submit' class='input' type='submit' form='search-form' value='Search'>
+
+                </form>
+            
+            </div>
+
+            <div id='content-table-wrapper'>
+
+                <?php
+
+                    $Content->generateRoster($conn, 
+                    $_POST['employee'],
+                    $_POST['day'],
+                    $_POST['location'],
+                    $_POST['start'],
+                    $_POST['end']
+                    );
+
+                ?>
+
+            </div>
+
         </div>
 
     </div>

@@ -289,7 +289,50 @@ class Content {
 
     }
 
-    public function generateRoster($Connection) {
+    public function generateDays($Connection) {
+        
+        // This function echos the same problem as getNews() when querying
+
+        /**
+         * For now this will just have to be regular mysqli_query
+         * There's no security risk as it isn't being passed/bound by params
+         * This took far too long to get to actually work to be bothered to fix right now
+         * !FIXME
+         */
+        $Statement = mysqli_query($Connection, '
+        SELECT
+        hourly.days.dayname
+        FROM hourly.days;
+        ');
+
+        $Result = mysqli_fetch_array($Statement);
+
+        echo "
+        
+            <select id='form-day' class='input' type='text' form='search-form' name='day'>
+            <option selected hidden>Day</option>
+        
+        ";
+
+        do {
+
+            echo "
+            
+                <option>" . $Result['dayname'] . "</option>
+
+            ";
+
+        } while($Result = mysqli_fetch_array($Statement));
+
+        echo "
+            
+            </select>
+        
+        ";
+
+    }
+
+    public function generateEmployees($Connection) {
 
         // This function echos the same problem as getNews() when querying
 
@@ -301,124 +344,199 @@ class Content {
          */
         $Statement = mysqli_query($Connection, '
         SELECT
-        hourly.roster.employee,
-        hourly.roster.start,
-        hourly.roster.finish,
-        hourly.roster.location
-        FROM hourly.roster;
+        hourly.accounts.username
+        FROM hourly.accounts;
         ');
 
         $Result = mysqli_fetch_array($Statement);
 
-        $i = 0;
+        echo "
+        
+            <select id='form-employee' class='input' type='text' form='search-form' name='employee'>
+            <option selected hidden>Employee</option>
+        
+        ";
 
         do {
 
-            $Results['employee'][$i] = $Result['employee'];
-            $Results['start'][$i] = $Result['start'];
-            $Results['finish'][$i] = $Result['finish'];
-            $Results['location'][$i] = $Result['location'];
+            echo "
+            
+                <option>" . $Result['username'] . "</option>
 
-            $i++;
+            ";
 
         } while($Result = mysqli_fetch_array($Statement));
 
         echo "
-        
-            <div id='content-roster-wrapper'>
-                <table>
-                    <tbody>
-                    <tr>
-                        <th></th>
-                        <th>Monday</th>
-                        <th>Tuesday</th>
-                        <th>Wednesday</th>
-                        <th>Thursday</th>
-                        <th>Friday</th>
-                        <th>Saturday</th>
-                        <th>Sunday</th>
-                    </tr>
             
+            </select>
+        
         ";
 
-        $EmployeeList = array($Results['employee']);
-        $EmployeeList = array_unique($Results['employee'], SORT_REGULAR);
+    }
+
+    public function generateLocation($Connection) {
+
+        // This function echos the same problem as getNews() when querying
 
         /**
-         * The array must be sorted
-         * For some reason, when we create the array and remove duplicates above, we maintain their previous array key.
-         * This fixes that by sorting the array
+         * For now this will just have to be regular mysqli_query
+         * There's no security risk as it isn't being passed/bound by params
+         * This took far too long to get to actually work to be bothered to fix right now
+         * !FIXME
          */
-        sort($EmployeeList);
+        $Statement = mysqli_query($Connection, '
+        SELECT hourly.locations.location
+        FROM hourly.locations;
+        ');
 
-        for($r = 0; $r < count($EmployeeList); $r++) {
+        $Result = mysqli_fetch_array($Statement);
+
+        echo "
+        
+            <select id='form-location' class='input' type='text' form='search-form' name='location'>
+            <option selected hidden>Location</option>
+        
+        ";
+
+        do {
 
             echo "
             
-                <tr>
-                <td>" . $EmployeeList[$r] . "</td>
+                <option>" . $Result['location'] . "</option>
 
             ";
 
-            for($i = 0; $i < count($Results['employee']); $i++) {
+        } while($Result = mysqli_fetch_array($Statement));
 
-                if($i < 7) {
+        echo "
+            
+            </select>
+        
+        ";
 
-                    $Statement = mysqli_query($Connection, '
+    }
+
+    public function generateRoster($Connection, ...$Data) {
+
+        /**
+         * !FIXME
+         * This SQL query will have to be fixed in the future
+         * Currently the query doesn't take into account all values from the form
+         * 
+         */
+
+        $Statement = mysqli_prepare($Connection, '
+        SELECT DISTINCT
+        hourly.accounts.username AS employee,
+        hourly.shifts.start,
+        hourly.shifts.end,
+        hourly.shifts.location
+        FROM hourly.accounts
+        INNER JOIN hourly.shifts ON hourly.shifts.id IN (
+            SELECT
+            hourly.roster.shiftid
+            FROM hourly.roster
+            WHERE hourly.roster.shiftid = (
+                SELECT
+                hourly.roster.shiftid
+                WHERE hourly.roster.employeeid = (
                     SELECT
-                    hourly.roster.start,
-                    hourly.roster.finish,
-                    hourly.roster.location
-                    FROM hourly.roster
-                    WHERE hourly.roster.employee = "' . $EmployeeList[$r] . '";
-                    ');
+                    hourly.accounts.id
+                    FROM hourly.accounts
+                    WHERE hourly.accounts.username = ?
+                ) OR 
+                hourly.roster.shiftid = (
+                    SELECT
+                    hourly.shifts.id
+                    FROM hourly.shifts
+                    WHERE hourly.shifts.dayid = (
+                        SELECT 
+                        hourly.days.id
+                        FROM hourly.days
+                        WHERE hourly.days.dayname = ?
+                    )
+                ) OR 
+                hourly.roster.shiftid IN (
+                    SELECT
+                    hourly.shifts.id
+                    FROM hourly.shifts
+                    WHERE hourly.shifts.location = ?
+                ) OR 
+                hourly.roster.shiftid IN (
+                    SELECT
+                    hourly.shifts.id
+                    FROM hourly.shifts
+                    WHERE hourly.shifts.start = ?
+                ) OR 
+                hourly.roster.shiftid IN (
+                    SELECT
+                    hourly.shifts.id
+                    FROM hourly.shifts
+                    WHERE hourly.shifts.end = ?
+                )
+            )
+        );
+        ');
 
-                    $Result = mysqli_fetch_array($Statement);
+        mysqli_stmt_bind_param($Statement,
+        "sssss",
+        $Data[0],
+        $Data[1],
+        $Data[2],
+        $Data[3],
+        $Data[4]
+        );
 
-                    $n = 0;
+        mysqli_stmt_execute($Statement);
 
-                    do {
+        mysqli_stmt_bind_result($Statement,
+        $Result['employee'],
+        $Result['start'],
+        $Result['end'],
+        $Result['location']
+        );
 
-                        $Results['start'][$n] = $Result['start'];
-                        $Results['finish'][$n] = $Result['finish'];
-                        $Results['location'][$n] = $Result['location'];
+        $Fetch = mysqli_stmt_fetch($Statement);
 
-                        $n++;
+        echo "
 
-                    } while($Result = mysqli_fetch_array($Statement));
+            <table>
+                <tr>
+                    <th>Employee</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Location</th>
+                </tr>        
 
-                    // printf("%s Starts @ %s <br>", $Results['employee'][$i], $Results['start'][$i]);
+        ";
 
-                    $StartTime[$i] = date_create($Results['start'][$i]);
-                    $EndTime[$i] = date_create($Results['finish'][$i]);
+        do {
 
-                    echo "
-                            <td>
-                                <div class='roster-content-container'>
-                                    <p class='roster-content-start'>" . $StartTime[$i]->format("h:m") . " Start</p>
-                                    <br>
-                                    <p class='roster-content-finish'>" . $EndTime[$i]->format("h:m") . " Finish</p>
-                                    <br>
-                                    <p class='roster-content-location'>Location: " . $Results['location'][$i] . "</p>
-                                    <br>
-                                </div>
-                            </td>
-                    ";
+            // We do this so that we don't get the current datetime in the start and end fields when there's no shifts
+            if(!empty($Result['employee'])) {
 
-                }
+                $Result['start'] = date_create($Result['start'])->format('d/m/Y h:i');
+                $Result['end'] = date_create($Result['end'])->format('d/m/Y h:i');
+
+                echo "
+                
+                    <tr>
+                        <td>" . $Result['employee'] . "</td>
+                        <td>" . $Result['start'] . "</td>
+                        <td>" . $Result['end'] . "</td>
+                        <td>" . $Result['location'] . "</td>
+                    </tr>    
+                
+                ";
 
             }
 
-            echo "</tr>";
+        } while($Fetch = mysqli_stmt_fetch($Statement));
 
-        }
-        
-        echo "
-                    </tbody>
-                </table>
-            </div>
+        echo "</table>";
 
-        ";
+        mysqli_stmt_close($Statement);
 
     }
 

@@ -14,71 +14,117 @@ html {
       html body #grid-container #grid-content {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr;
+        grid-template-rows: 60px 1fr;
         grid-column: auto;
         grid-row: 2;
         background-color: #454545; }
-        html body #grid-container #grid-content #content-roster-wrapper {
-          position: relative;
-          top: 0px;
-          height: 100%;
-          width: 100%;
-          border-top: 1px groove #ffffff;
-          overflow: hidden; }
-          html body #grid-container #grid-content #content-roster-wrapper table {
-            display: table;
-            height: 95%;
-            width: 100%;
-            border-collapse: collapse; }
-            html body #grid-container #grid-content #content-roster-wrapper table th {
+        html body #grid-container #grid-content #content-search-container {
+          grid-row: 1;
+          grid-column: 1;
+          border-top: 1px groove #00ff22; }
+          html body #grid-container #grid-content #content-search-container #search-form {
+            position: relative;
+            top: 0px; }
+            html body #grid-container #grid-content #content-search-container #search-form #form-employee {
               position: relative;
-              top: -5px;
+              margin: 20px 0px 0px 27.5px;
+              padding: 0px; }
+            html body #grid-container #grid-content #content-search-container #search-form #form-day {
+              position: relative;
+              margin: 20px 0px 0px 27.5px;
+              padding: 0px; }
+            html body #grid-container #grid-content #content-search-container #search-form #form-location {
+              position: relative;
+              margin: 20px 0px 0px 27.5px;
+              padding: 0px; }
+            html body #grid-container #grid-content #content-search-container #search-form #form-start {
+              position: relative;
+              margin: 20px 0px 0px 27.5px; }
+            html body #grid-container #grid-content #content-search-container #search-form #form-end {
+              position: relative;
+              margin: 20px 0px 0px 27.5px; }
+            html body #grid-container #grid-content #content-search-container #search-form #form-submit {
+              position: relative;
+              height: 20px;
+              width: 60px;
+              background: none;
+              border: none;
               color: #ffffff;
-              text-align: left;
+              font-family: 'Open Sans', sans-serif;
+              font-size: 14px;
+              font-weight: 300;
+              margin: 20px 0px 0px 20px;
+              padding: 0px;
+              cursor: pointer; }
+              html body #grid-container #grid-content #content-search-container #search-form #form-submit:hover {
+                text-decoration: underline; }
+        html body #grid-container #grid-content #content-table-wrapper {
+          position: relative;
+          top: 10px;
+          height: auto;
+          width: 100%; }
+          html body #grid-container #grid-content #content-table-wrapper table {
+            height: auto;
+            width: 100%; }
+            html body #grid-container #grid-content #content-table-wrapper table th {
+              position: relative;
+              top: 0px;
+              color: #ffffff;
+              text-align: center;
               font-family: 'Lato', sans-serif;
               font-size: inherit;
               font-weight: 300;
               font-style: normal;
-              margin-bottom: 20px; }
-            html body #grid-container #grid-content #content-roster-wrapper table td {
-              width: 14.5%;
+              padding-bottom: 5px;
+              text-decoration: underline; }
+            html body #grid-container #grid-content #content-table-wrapper table tr,
+            html body #grid-container #grid-content #content-table-wrapper table td {
               color: #ffffff;
-              text-align: left;
+              text-align: center;
               font-family: 'Open Sans', sans-serif;
               font-size: 14px;
               font-weight: 100;
-              font-style: normal; }
-            html body #grid-container #grid-content #content-roster-wrapper table .roster-content-container .roster-content-start {
-              position: relative;
-              display: inline;
-              font-family: 'Open Sans', sans-serif;
-              font-size: 12px;
-              font-weight: 100;
               font-style: normal;
-              margin: 0; }
-            html body #grid-container #grid-content #content-roster-wrapper table .roster-content-container .roster-content-finish {
-              position: relative;
-              display: inline;
-              font-family: 'Open Sans', sans-serif;
-              font-size: 12px;
-              font-weight: 100;
-              font-style: normal;
-              margin: 0; }
-            html body #grid-container #grid-content #content-roster-wrapper table .roster-content-container .roster-content-location {
-              position: relative;
-              display: inline;
-              font-family: 'Open Sans', sans-serif;
-              font-size: 12px;
-              font-weight: 100;
-              font-style: normal;
-              margin: 0; }
-            html body #grid-container #grid-content #content-roster-wrapper table .roster-content-container .roster-content-notes {
-              position: relative;
-              display: inline;
-              font-family: 'Open Sans', sans-serif;
-              font-size: 12px;
-              font-weight: 100;
-              font-style: normal;
-              margin: 0; }
+              line-height: 15px; }
+
+.input[type='text'] {
+  width: 200px;
+  height: 25px;
+  background-color: #454545;
+  color: #ffffff;
+  justify-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  border: 1px solid #00ff88;
+  padding-left: 10px; }
+  .input[type='text'][type='text']:hover, .input[type='text'][type='text']:active, .input[type='text'][type='text']:focus {
+    border: 1px solid #00ff22; }
+  .input[type='text']::-webkit-input-placeholder {
+    color: #ffffff;
+    opacity: 1;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: normal; }
+  .input[type='text']:-ms-input-placeholder {
+    color: #ffffff;
+    opacity: 1;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: normal; }
+  .input[type='text']::-ms-input-placeholder {
+    color: #ffffff;
+    opacity: 1;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: normal; }
+  .input[type='text']::placeholder {
+    color: #ffffff;
+    opacity: 1;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: normal; }
 
 /*# sourceMappingURL=roster.css.map */
