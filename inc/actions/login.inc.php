@@ -62,8 +62,8 @@ if(!empty($_POST['username'] && !empty($_POST['password']))) {
 
         mysqli_stmt_bind_result($Statement, 
         $Result['count'], 
-        $Result['token'])
-        ;
+        $Result['token']
+        );
 
         mysqli_stmt_fetch($Statement);
 
