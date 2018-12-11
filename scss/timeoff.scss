@@ -1,0 +1,271 @@
+@import 'partials/_partials.scss';
+
+html {
+	height: 100%;
+	width: 100%;
+
+	overflow: hidden;
+
+	body {
+		height: 100%;
+		width: 100%;
+
+		#grid-container {
+			display: grid;
+
+			grid-template-columns: 1fr;
+			grid-template-rows: 40px 1fr;
+
+			height: 100%;
+			width: 100%;
+
+			#grid-content {
+				display: grid;
+
+				grid-column: auto;
+				grid-row: 2;
+
+				background-color: #454545;
+
+				#content-timeoff-container {
+					position: relative;
+
+					display: grid;
+
+					grid-template-columns: 1fr;
+					grid-template-rows: 50px auto;
+
+					justify-self: center;
+					align-self: center;
+
+					width: 500px;
+					height: 450px;
+
+					background-color: #4a4a4a;
+
+					border: 1px solid rgba(255, 255, 255, 0.10);
+
+					#timeoff-heading {
+						position: relative;
+
+						align-self: center;
+
+						color: #ffffff;
+
+						font-family: 'Lato', sans-serif;
+						font-size: 40px;
+						font-weight: 300;
+						font-style: italic;
+
+						text-align: center;
+
+						padding: 0px;
+						margin: 0px;
+					}
+
+					#login-error {
+						position: absolute;
+
+						right: 0px;
+
+						align-self: start;
+						justify-self: center;
+
+						color: #ff0000;
+
+						font-family: 'Lato', sans-serif;
+						font-size: 14px;
+						font-weight: 300;
+						font-style: normal;
+
+						margin: 55px 10px 10px 45px;
+					}
+
+					#timeoff-form {
+						display: grid;
+
+						grid-column: auto;
+						grid-row: 2;
+
+						grid-template-columns: 1fr 1fr;
+						grid-template-rows: 30px 35px 20px 35px 20px 35px 20px 100px 1fr;
+
+						margin: 0;
+
+						#form-user {
+							grid-column: 1;
+							grid-row: 1;
+
+							justify-self: start;
+							align-self: center;
+
+							color: #ffffff;
+
+							font-family: 'Lato', sans-serif;
+							font-size: 16px;
+							font-weight: 300;
+
+							margin-left: 20px;
+						}
+
+						#form-start {
+							grid-column: 1;
+							grid-row: 2;
+
+							justify-self: start;
+							align-self: center;
+
+							color: #ffffff;
+
+							font-family: 'Lato', sans-serif;
+							font-size: 14px;
+							font-weight: 300;
+
+							margin-left: 20px;
+						}
+						#form-end {
+							grid-column: 1;
+							grid-row: 4;
+
+							justify-self: start;
+							align-self: center;
+
+							color: #ffffff;
+
+							font-family: 'Lato', sans-serif;
+							font-size: 14px;
+							font-weight: 300;
+
+							margin-left: 20px;
+						}
+
+						#timeoff-submit {
+							grid-column-start: 1;
+							grid-column-end: 3;
+							grid-row: 9;
+
+							justify-self: center;
+							align-self: center;
+
+							width: 250px;
+							height: 50px;
+
+							background-color: #00ff88;
+
+							border: #00b761;
+
+							color: #ffffff;
+
+							font-family: 'Lato', sans-serif;
+							font-size: 28px;
+							font-weight: 300;
+
+							text-align: center;
+							text-decoration: underline;
+
+							cursor: pointer;
+						}
+
+						#form-reason {
+							grid-column: 1;
+							grid-row: 6;
+
+							justify-self: start;
+							align-self: center;
+
+							color: #ffffff;
+
+							font-family: 'Lato', sans-serif;
+							font-size: 14px;
+							font-weight: 300;
+
+							margin-left: 20px;
+						}
+						#form-details {
+							grid-row: 8;
+
+							justify-self: start;
+							align-self: center;
+
+							height: 90%;
+							width: 92%;
+
+							color: #ffffff;
+
+							font-family: 'Lato', sans-serif;
+							font-size: 14px;
+							font-weight: 300;
+
+							margin-left: 20px;
+
+							padding-top: 5px;
+							padding-right: 5px;
+							padding-bottom: 5px;
+						}
+					}
+					#timeoff-error {
+						position: absolute;
+
+						align-self: start;
+						justify-self: center;
+
+						color: #ff0000;
+
+						font-family: 'Lato', sans-serif;
+						font-size: 14px;
+						font-weight: 300;
+						font-style: normal;
+
+						margin-top: 100px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.input[type='text'],
+.input[type='date'],
+select,
+textarea {
+	grid-column-start: 1;
+	grid-column-end: 3;
+
+	width: 200px;
+	height: 25px;
+
+	background-color: #454545;
+
+	color: #ffffff;
+
+	justify-self: center;
+	align-self: center;
+
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+	font-style: normal;
+
+	border: 1px solid #00ff88;
+
+	padding-left: 10px;
+
+	&[type='text']:hover,
+	&[type='text']:active,
+	&[type='text']:focus {
+		border: 1px solid #00ff22;
+	}
+
+	&[type='password']:hover,
+	&[type='password']:active,
+	&[type='password']:focus {
+		border: 1px solid #00ff22;
+	}
+
+	&::placeholder {
+		color: #ffffff;
+
+		font-family: 'Lato', sans-serif;
+		font-weight: 300;
+		font-style: normal;
+	}
+}
