@@ -105,7 +105,7 @@ if(
                 hourly.accounts.password,
                 hourly.accounts.email,
                 hourly.accounts.company,
-                hourly.accounts.position
+                hourly.accounts.positionid
                 ) VALUES (
                 DEFAULT,
                 ?,
@@ -261,7 +261,7 @@ if(
                         hourly.accounts.password,
                         hourly.accounts.email,
                         hourly.accounts.company,
-                        hourly.accounts.position
+                        hourly.accounts.positionid
                         ) VALUES (
                         DEFAULT,
                         ?,

@@ -167,7 +167,7 @@ class Content {
         FROM hourly.positions
         WHERE hourly.positions.id = (
             SELECT
-            hourly.accounts.position
+            hourly.accounts.positionid
             FROM hourly.accounts
             WHERE hourly.accounts.username = ?
         );
