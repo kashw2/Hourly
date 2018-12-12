@@ -108,6 +108,41 @@ class Authentication {
 
     }
 
+    public function authAdmin($Connection) {
+
+        $Statement = mysqli_prepare($Connection,'
+        SELECT
+        hourly.positions.position
+        FROM hourly.positions
+        WHERE hourly.positions.id = (
+            SELECT
+            hourly.accounts.positionid
+            FROM hourly.accounts
+            WHERE hourly.accounts.username = ? OR hourly.accounts.username = ?
+        );
+        ');
+
+        mysqli_stmt_bind_param($Statement,
+        'ss',
+        $_SESSION['User']['Username'],
+        self::getUserByToken($Connection)
+        );
+
+        mysqli_stmt_execute($Statement);
+
+        mysqli_stmt_bind_result($Statement, $Result['Position']);
+
+        mysqli_stmt_fetch($Statement);
+
+        mysqli_stmt_close($Statement);
+
+        if($Result['Position'] == "Chief Executive Officer")
+            return;
+        else header('Location: home.php');
+
+
+    }
+
 }
 
 ?>
