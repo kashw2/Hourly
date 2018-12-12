@@ -263,13 +263,15 @@ class Content {
 
             for($i = 0; $i < self::getNewsCount($Connection); $i++) {
 
+                $Date = date_create($News['date'][$i]);
+
                 echo "
 
                     <div class='news news-container'>
                     
                         <h3 class='news news-title'>" . $News['title'][$i] . "</h3>
 
-                        <p class='news news-date'>" . $News['date'][$i][8] . $News['date'][$i][9] . "/" . $News['date'][$i][5] . $News['date'][$i][6] . "/" . $News['date'][$i][0] . $News['date'][$i][1] . $News['date'][$i][2] . $News['date'][$i][3] . "</p>
+                        <p class='news news-date'>" . $Date->format('d/m/y') . "</p>
 
                         <h3 class='news news-author'>" . $News['author'][$i] . "</h3>
 
