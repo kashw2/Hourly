@@ -40,8 +40,8 @@ class Content {
          * PHP Switch statements default to their default case if a variable is not parsed as a condition to the statement
          */
 
-        switch(self::getUserPosition($Connection, $_SESSION['User']['Username'])) {
-            case "Chief Executive Officer":
+        switch(Authentication::authAdmin($Connection)) {
+            case true:
 
                 echo "
                 
@@ -53,7 +53,7 @@ class Content {
                 ";
 
             break;
-            case "Employee":
+            case false:
 
                 echo "
 

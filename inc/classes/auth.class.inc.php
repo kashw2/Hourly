@@ -108,7 +108,7 @@ class Authentication {
 
     }
 
-    public function authAdmin($Connection) {
+    public static function authAdmin($Connection) {
 
         $Statement = mysqli_prepare($Connection,'
         SELECT
@@ -119,7 +119,7 @@ class Authentication {
             hourly.accounts.positionid
             FROM hourly.accounts
             WHERE hourly.accounts.username = ? OR hourly.accounts.username = ?
-        );
+        ) AND hourly.positions.admin = 1;
         ');
 
         mysqli_stmt_bind_param($Statement,
@@ -136,9 +136,13 @@ class Authentication {
 
         mysqli_stmt_close($Statement);
 
-        if($Result['Position'] == "Chief Executive Officer")
-            return;
-        else header('Location: home.php');
+        /**
+         * If the position isn't empty then it has returned a result meaning that the user is an administrator and can view the page/document
+         */
+        if(!empty($Result['Position']))
+            return true;
+        else 
+            return false;
 
 
     }
