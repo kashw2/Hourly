@@ -47,6 +47,7 @@ class Content {
                 
                     <a id='header-nav-logout' class='nav' href='inc/actions/logout.inc.php'>Logout</a>
                     <a id='header-nav-roster' class='nav' href='roster.php'>Roster</a>
+                    <a id='header-nav-timetable' class='nav' href='timetable.php'>Edit Roster</a>
                     <a id='header-nav-admin' class='nav' href='admin.php'>Admin</a>
                     <a id='header-nav-timeoff' class='nav' href='timeoff.php'>Time Off</a>
 
