@@ -40,7 +40,7 @@ html {
 				grid-column: auto;
 				grid-row: 1;
 
-				grid-template-columns: 120px 1fr auto auto auto auto;
+				grid-template-columns: 120px 1fr auto auto auto auto auto;
 				grid-template-rows: 1fr;
 
 				height: 40px;
@@ -105,16 +105,20 @@ html {
 					grid-column: 4;
 					grid-row: 1;
 				}
-				#header-nav-admin {
+				#header-nav-timetable {
 					grid-column: 5;
 					grid-row: 1;
 				}
-				#header-nav-login {
+				#header-nav-admin {
 					grid-column: 6;
 					grid-row: 1;
 				}
+				#header-nav-login {
+					grid-column: 7;
+					grid-row: 1;
+				}
 				#header-nav-logout {
-					grid-column: 6;
+					grid-column: 7;
 					grid-row: 1;
 				}
 			}

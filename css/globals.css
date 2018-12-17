@@ -25,7 +25,7 @@ html {
         display: grid;
         grid-column: auto;
         grid-row: 1;
-        grid-template-columns: 120px 1fr auto auto auto auto;
+        grid-template-columns: 120px 1fr auto auto auto auto auto;
         grid-template-rows: 1fr;
         height: 40px;
         width: 100%;
@@ -66,14 +66,17 @@ html {
         html body #grid-container #grid-header #header-nav-roster {
           grid-column: 4;
           grid-row: 1; }
-        html body #grid-container #grid-header #header-nav-admin {
+        html body #grid-container #grid-header #header-nav-timetable {
           grid-column: 5;
           grid-row: 1; }
-        html body #grid-container #grid-header #header-nav-login {
+        html body #grid-container #grid-header #header-nav-admin {
           grid-column: 6;
           grid-row: 1; }
+        html body #grid-container #grid-header #header-nav-login {
+          grid-column: 7;
+          grid-row: 1; }
         html body #grid-container #grid-header #header-nav-logout {
-          grid-column: 6;
+          grid-column: 7;
           grid-row: 1; }
 
 .nav {
@@ -95,5 +98,4 @@ html {
       height: 1px;
       width: auto;
       margin: 0px -10px 0px -10px; }
-
 /*# sourceMappingURL=globals.css.map */
