@@ -543,6 +543,462 @@ class Content {
 
     }
 
+    public function generateAdmin($Connection) {
+
+        echo "
+
+            <div id='content-accounts' class='box-container'>
+
+                <p class='window-headings'>Accounts</p>
+
+                <div class='inner-container'>
+
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+
+        ";
+
+        $Statement = mysqli_prepare($Connection, '
+        SELECT
+        hourly.accounts.username,
+        hourly.accounts.email,
+        hourly.accounts.company,
+        hourly.positions.position
+        FROM hourly.accounts
+        INNER JOIN hourly.positions ON hourly.positions.id = hourly.accounts.positionid
+        ');
+
+        mysqli_stmt_bind_result($Statement,
+        $Result['username'],
+        $Result['email'],
+        $Result['company'],
+        $Result['positionid']
+        );
+
+        mysqli_stmt_execute($Statement);
+
+        $Results = mysqli_stmt_fetch($Statement);
+
+        do {
+
+            echo "
+
+                <tr>
+                    <td>" . $Result['username'] . "</td>
+                    <td>" . $Result['email'] . "</td>
+                    <td>" . $Result['company'] . "</td>
+                    <td>" . $Result['positionid'] . "</td>
+                    <td id='accounts-edit' class='option edit'>Edit</td>
+                    <td id='accounts-delete' class='option delete'>Delete</td>
+                </tr>
+            
+            ";
+
+        } while($Results = mysqli_stmt_fetch($Statement));
+
+        mysqli_stmt_close($Statement);
+
+        echo "
+
+            <tr>
+                <td>
+                    <input type='text' id='account-username' class='input' placeholder='Username'>
+                </td>
+                <td>
+                    <input type='text' id='account-email' class='input' placeholder='Email'>
+                </td>
+                <td>
+                    <input type='text' id='account-password' class='input' placeholder='Password'>
+                </td>
+                <td>
+                    <select id='account-position' class='input'>
+                        <option selecteed hidden>Position</option>
+
+        ";
+
+        $Statement = mysqli_prepare($Connection, '
+        SELECT
+        hourly.positions.position
+        FROM hourly.positions
+        ');
+
+        mysqli_stmt_bind_result($Statement, $Result['positions']);
+
+        mysqli_stmt_execute($Statement);
+
+        $Results = mysqli_stmt_fetch($Statement);
+
+        do {
+
+            echo "
+            
+                <option>" . $Result['positions'] . "</option>
+
+            ";
+
+        } while($Results = mysqli_stmt_fetch($Statement));
+
+        echo "
+
+                                </select>
+                            </td>
+                            <td></td>
+                            <td id='accounts-add' class='option add'>Add</td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            
+            </div>
+
+            <div id='content-days' class='box-container'>
+
+                <p class='window-headings'>Days</p>
+
+                <div class='inner-container'>
+
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+
+        ";
+
+        $Statement = mysqli_prepare($Connection, '
+        SELECT
+        hourly.days.dayname
+        FROM hourly.days
+        ');
+
+        mysqli_stmt_bind_result($Statement,
+        $Result['day']
+        );
+
+        mysqli_stmt_execute($Statement);
+
+        $Results = mysqli_stmt_fetch($Statement);
+
+        do {
+
+            echo "
+
+                <tr>
+                    <td>" . $Result['day'] . "</td>
+                    <td id='days-delete' class='option delete'>Delete</td>
+                </tr>
+            
+            ";
+
+        } while($Results = mysqli_stmt_fetch($Statement));
+
+        mysqli_stmt_close($Statement);
+
+        echo "
+
+                <tr>
+                    <td>
+                        <input type='text' id='days-day' class='input' placeholder='Day'>
+                    </td>
+                    <td id='days-add' class='option add'>Add</td>
+                </tr>
+                </table>
+
+                </div>
+            
+            </div>
+
+            <div id='content-leave' class='box-container'>
+
+                <p class='window-headings'>Leave</p>
+
+                <div class='inner-container'>
+
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+
+        ";
+
+        $Statement = mysqli_prepare($Connection, '
+        SELECT
+        hourly.accounts.username,
+        hourly.leave.start,
+        hourly.leave.end,
+        hourly.leave.reason
+        FROM hourly.leave
+        INNER JOIN hourly.accounts ON hourly.accounts.id = hourly.leave.employeeid
+        ');
+
+        mysqli_stmt_bind_result($Statement,
+        $Result['username'],
+        $Result['start'],
+        $Result['end'],
+        $Result['reason']
+        );
+
+        mysqli_stmt_execute($Statement);
+
+        $Results = mysqli_stmt_fetch($Statement);
+
+        do {
+
+            $Result['start'] = date_create($Result['start'])->format('d/m/y');
+            $Result['end'] = date_create($Result['end'])->format('d/m/y');
+
+            echo "
+
+                <tr>
+                    <td>" . $Result['username'] . "</td>
+                    <td>" . $Result['start'] . "</td>
+                    <td>" . $Result['end'] . "</td>
+                    <td>" . $Result['reason'] . "</td>
+                    <td id='leave-delete' class='option delete'>Delete</td>
+                </tr>
+            
+            ";
+
+        } while($Results = mysqli_stmt_fetch($Statement));
+
+        mysqli_stmt_close($Statement);
+
+        echo "
+        
+                    </table>
+
+                </div>
+            
+            </div>
+
+            <div id='content-locations' class='box-container'>
+
+                <p class='window-headings'>Locations</p>
+            
+                <div class='inner-container'>
+
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+
+        ";
+
+        $Statement = mysqli_prepare($Connection, '
+        SELECT
+        hourly.locations.location
+        FROM hourly.locations
+        ');
+
+        mysqli_stmt_bind_result($Statement,
+        $Result['location']
+        );
+
+        mysqli_stmt_execute($Statement);
+
+        $Results = mysqli_stmt_fetch($Statement);
+
+        do {
+
+            echo "
+
+                <tr>
+                    <td>" . $Result['location'] . "</td>
+                    <td id='location-delete' class='option delete'>Delete</td>
+                </tr>
+            
+            ";
+
+        } while($Results = mysqli_stmt_fetch($Statement));
+
+        mysqli_stmt_close($Statement);
+
+        echo "
+
+                    <tr>
+                        <td>
+                            <input type='text' id='days-day' class='input' placeholder='Location'>
+                        </td>
+                        <td id='days-add' class='option add'>Add</td>
+                    </tr>
+                    </table>
+                
+                </div>
+
+            </div>
+
+            <div id='content-positions' class='box-container'>
+
+                <p class='window-headings'>Positions</p>
+            
+                <div class='inner-container'>
+
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+
+        ";
+
+        $Statement = mysqli_prepare($Connection, '
+        SELECT
+        hourly.positions.position,
+        hourly.positions.admin
+        FROM hourly.positions
+        ');
+
+        mysqli_stmt_bind_result($Statement,
+        $Result['position'],
+        $Result['admin']
+        );
+
+        mysqli_stmt_execute($Statement);
+
+        $Results = mysqli_stmt_fetch($Statement);
+
+        do {
+
+            if($Result['admin'] == 1)
+                $Result['admin'] = 'Admin';
+            else
+                $Result['admin'] = 'N/A';
+
+            echo "
+
+                <tr>
+                    <td>" . $Result['position'] . "</td>
+                    <td>" . $Result['admin'] . "</td>
+                    <td id='positions-delete' class='option delete'>Delete</td>
+                </tr>
+            
+            ";
+
+        } while($Results = mysqli_stmt_fetch($Statement));
+
+        mysqli_stmt_close($Statement);
+
+        echo "
+                    <tr>
+                        <td>
+                            <input type='text' id='positions-day' class='input' placeholder='Position'>
+                        </td>
+                        <td>
+                            <input type='checkbox' id='positions-admin' class='input'>
+                        </td>
+                        <td id='positions-add' class='option add'>Add</td>
+                    </tr>
+                    </table>
+
+                </div>
+
+            </div>
+
+            <div id='content-news' class='box-container'>
+
+                <p class='window-headings'>News</p>
+            
+                <div class='inner-container'>
+
+                    <div id='table-container'>
+                    
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+
+        ";
+
+        $Statement = mysqli_prepare($Connection, '
+        SELECT
+        hourly.news.id,
+        hourly.news.author,
+        hourly.news.date,
+        hourly.news.title
+        FROM hourly.news
+        ');
+
+        mysqli_stmt_bind_result($Statement,
+        $Result['id'],
+        $Result['author'],
+        $Result['date'],
+        $Result['title']
+        );
+
+        mysqli_stmt_execute($Statement);
+
+        $Results = mysqli_stmt_fetch($Statement);
+
+        do {
+
+            // Make sure there's actually a entry/row to display
+            if(!empty($Result['id'])) {
+
+                $Result['date'] = date_create($Result['date'])->format('y/m/d');
+
+                echo "
+
+                    <tr>
+                        <td>" . $Result['id'] . "</td>
+                        <td>" . $Result['author'] . "</td>
+                        <td>" . $Result['date'] . "</td>
+                        <td>" . $Result['title'] . "</td>
+                        <td id='news-edit' class='option edit'>Edit</td>
+                        <td id='news-delete' class='option delete'>Delete</td>
+                    </tr>
+                
+                ";
+
+            }
+
+        } while($Results = mysqli_stmt_fetch($Statement));
+
+        mysqli_stmt_close($Statement);
+
+        echo "
+
+                        </table>
+
+                    </div>
+
+                    <div id='post-container'>
+                    
+                        <input id='news-title' class='input' type='text' placeholder='Title'>
+
+                        <textarea id='news-content' class='input' wrap='soft' placeholder='Content'></textarea>
+
+                        <input id='news-submit' class='input' type='submit' value='Submit'>
+
+                    </div>
+
+                </div>
+
+            </div>
+        
+        ";
+        
+    }
+
 }
 
 ?>
