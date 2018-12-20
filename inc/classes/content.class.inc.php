@@ -595,6 +595,7 @@ class Content {
                     <td>" . $Result['email'] . "</td>
                     <td>" . $Result['company'] . "</td>
                     <td>" . $Result['positionid'] . "</td>
+                    <td></td>
                     <!--<td id='accounts-edit' class='option edit'>Edit</td>-->
                     <td id='accounts-delete' class='option delete'>Delete</td>
                 </tr>
@@ -963,6 +964,7 @@ class Content {
                         <td>" . $Result['author'] . "</td>
                         <td>" . $Result['date'] . "</td>
                         <td>" . $Result['title'] . "</td>
+                        <td></td>
                         <!--<td id='news-edit' class='option edit'>Edit</td>-->
                         <td id='news-delete' class='option delete'>Delete</td>
                     </tr>
