@@ -554,14 +554,6 @@ class Content {
                 <div class='inner-container'>
 
                     <table>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
 
         ";
 
@@ -597,7 +589,7 @@ class Content {
                     <td>" . $Result['positionid'] . "</td>
                     <td></td>
                     <!--<td id='accounts-edit' class='option edit'>Edit</td>-->
-                    <td id='accounts-delete' class='option delete'>Delete</td>
+                    <td id='account-delete' class='option delete' data-account='" . $Result['username'] . "'>Delete</td>
                 </tr>
             
             ";
@@ -651,12 +643,13 @@ class Content {
                                 </select>
                             </td>
                             <td></td>
-                            <td id='accounts-add' class='option add'>Add</td>
+                            <td id='account-add' class='option add' data-company='" . $Result['company'] . "'>Add</td>
                         </tr>
                     </table>
 
                 </div>
 
+                <script src='js/min/adminLoad.min.js'></script>
             
             </div>
 
@@ -668,7 +661,6 @@ class Content {
 
                     <table>
                         <tr>
-                            <th></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -695,7 +687,7 @@ class Content {
 
                 <tr>
                     <td>" . $Result['day'] . "</td>
-                    <td id='days-delete' class='option delete'>Delete</td>
+                    <td id='day-delete' class='option delete' data-day='" . $Result['day'] . "'>Delete</td>
                 </tr>
             
             ";
@@ -708,9 +700,9 @@ class Content {
 
                 <tr>
                     <td>
-                        <input type='text' id='days-day' class='input' placeholder='Day'>
+                        <input type='text' id='day-day' class='input' placeholder='Day'>
                     </td>
-                    <td id='days-add' class='option add'>Add</td>
+                    <td id='day-add' class='option add'>Add</td>
                 </tr>
                 </table>
 
@@ -832,9 +824,9 @@ class Content {
 
                     <tr>
                         <td>
-                            <input type='text' id='days-day' class='input' placeholder='Location'>
+                            <input type='text' id='day-day' class='input' placeholder='Location'>
                         </td>
-                        <td id='days-add' class='option add'>Add</td>
+                        <td id='day-add' class='option add'>Add</td>
                     </tr>
                     </table>
                 
@@ -885,7 +877,7 @@ class Content {
                 <tr>
                     <td>" . $Result['position'] . "</td>
                     <td>" . $Result['admin'] . "</td>
-                    <td id='positions-delete' class='option delete'>Delete</td>
+                    <td id='position-delete' class='option delete'>Delete</td>
                 </tr>
             
             ";
@@ -897,12 +889,12 @@ class Content {
         echo "
                     <tr>
                         <td>
-                            <input type='text' id='positions-day' class='input' placeholder='Position'>
+                            <input type='text' id='position-day' class='input' placeholder='Position'>
                         </td>
                         <td>
-                            <input type='checkbox' id='positions-admin' class='input'>
+                            <input type='checkbox' id='position-admin' class='input'>
                         </td>
-                        <td id='positions-add' class='option add'>Add</td>
+                        <td id='position-add' class='option add'>Add</td>
                     </tr>
                     </table>
 
@@ -920,7 +912,6 @@ class Content {
                     
                         <table>
                             <tr>
-                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -964,7 +955,6 @@ class Content {
                         <td>" . $Result['author'] . "</td>
                         <td>" . $Result['date'] . "</td>
                         <td>" . $Result['title'] . "</td>
-                        <td></td>
                         <!--<td id='news-edit' class='option edit'>Edit</td>-->
                         <td id='news-delete' class='option delete'>Delete</td>
                     </tr>
