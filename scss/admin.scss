@@ -112,6 +112,8 @@ html {
 	grid-column: auto;
 	grid-row: auto;
 
+	max-height: 100%;
+
 	background-color: #4a4a4a;
 
 	margin: 10px;
@@ -178,7 +180,7 @@ html {
 
 				line-height: 15px;
 
-				#accounts-add {
+				#account-add {
 					width: auto;
 				}
 
@@ -196,6 +198,14 @@ html {
 
 				#account-position {
 					width: 25%;
+				}
+
+				.news-title {
+					position: relative;
+
+					right: 10%;
+
+					margin-right: 10px;
 				}
 
 				&.option {
@@ -228,6 +238,10 @@ html {
 					}
 
 					&.delete {
+						position: absolute;
+
+						right: 0px;
+
 						float: right;
 
 						color: #ff0000;
@@ -256,7 +270,8 @@ html {
 			height: 100%;
 			width: 50%;
 
-			border-right: 1px solid #00ff22;
+			overflow-x: hidden;
+			overflow-y: auto;
 		}
 
 		#post-container {
@@ -266,8 +281,6 @@ html {
 
 			height: 100%;
 			width: 50%;
-
-			border-left: 1px solid #00ff22;
 
 			#news-title {
 				position: relative;

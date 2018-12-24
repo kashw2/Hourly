@@ -55,8 +55,8 @@ if(
 
     mysqli_stmt_execute($Statement);
 
-}
+    mysqli_stmt_close($Statement);
 
-echo var_dump($_POST);
+}
 
 ?>

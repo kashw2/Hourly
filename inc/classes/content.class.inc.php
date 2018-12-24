@@ -648,8 +648,6 @@ class Content {
                     </table>
 
                 </div>
-
-                <script src='js/min/adminLoad.min.js'></script>
             
             </div>
 
@@ -660,10 +658,6 @@ class Content {
                 <div class='inner-container'>
 
                     <table>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                        </tr>
 
         ";
 
@@ -671,6 +665,7 @@ class Content {
         SELECT
         hourly.days.dayname
         FROM hourly.days
+        ORDER BY hourly.days.dayname ASC
         ');
 
         mysqli_stmt_bind_result($Statement,
@@ -717,14 +712,7 @@ class Content {
                 <div class='inner-container'>
 
                     <table>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-
+                    
         ";
 
         $Statement = mysqli_prepare($Connection, '
@@ -735,6 +723,7 @@ class Content {
         hourly.leave.reason
         FROM hourly.leave
         INNER JOIN hourly.accounts ON hourly.accounts.id = hourly.leave.employeeid
+        ORDER BY hourly.leave.start ASC
         ');
 
         mysqli_stmt_bind_result($Statement,
@@ -750,20 +739,25 @@ class Content {
 
         do {
 
-            $Result['start'] = date_create($Result['start'])->format('d/m/y');
-            $Result['end'] = date_create($Result['end'])->format('d/m/y');
+            // We do this so that we don't get the current datetime in the start and end fields when there's no leave
+            if(!empty($Result['username'])) {
 
-            echo "
+                $Result['newstart'] = date_create($Result['start'])->format('d/m/y');
+                $Result['newend'] = date_create($Result['end'])->format('d/m/y');
 
-                <tr>
-                    <td>" . $Result['username'] . "</td>
-                    <td>" . $Result['start'] . "</td>
-                    <td>" . $Result['end'] . "</td>
-                    <td>" . $Result['reason'] . "</td>
-                    <td id='leave-delete' class='option delete'>Delete</td>
-                </tr>
-            
-            ";
+                echo "
+
+                    <tr>
+                        <td>" . $Result['username'] . "</td>
+                        <td>Starts: " . $Result['newstart'] . "</td>
+                        <td>Ends: " . $Result['newend'] . "</td>
+                        <td>" . $Result['reason'] . "</td>
+                        <td id='leave-delete' class='option delete' data-start='" . $Result['start'] . "' data-end='" . $Result['end'] . "'>Delete</td>
+                    </tr>
+                
+                ";
+
+            }
 
         } while($Results = mysqli_stmt_fetch($Statement));
 
@@ -784,10 +778,6 @@ class Content {
                 <div class='inner-container'>
 
                     <table>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                        </tr>
 
         ";
 
@@ -811,7 +801,7 @@ class Content {
 
                 <tr>
                     <td>" . $Result['location'] . "</td>
-                    <td id='location-delete' class='option delete'>Delete</td>
+                    <td id='location-delete' class='option delete' data-location='" . $Result['location'] . "'>Delete</td>
                 </tr>
             
             ";
@@ -824,9 +814,9 @@ class Content {
 
                     <tr>
                         <td>
-                            <input type='text' id='day-day' class='input' placeholder='Location'>
+                            <input type='text' id='location-name' class='input' placeholder='Location'>
                         </td>
-                        <td id='day-add' class='option add'>Add</td>
+                        <td id='location-add' class='option add'>Add</td>
                     </tr>
                     </table>
                 
@@ -841,11 +831,6 @@ class Content {
                 <div class='inner-container'>
 
                     <table>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
 
         ";
 
@@ -854,6 +839,7 @@ class Content {
         hourly.positions.position,
         hourly.positions.admin
         FROM hourly.positions
+        ORDER by hourly.positions.admin DESC
         ');
 
         mysqli_stmt_bind_result($Statement,
@@ -877,7 +863,7 @@ class Content {
                 <tr>
                     <td>" . $Result['position'] . "</td>
                     <td>" . $Result['admin'] . "</td>
-                    <td id='position-delete' class='option delete'>Delete</td>
+                    <td id='position-delete' class='option delete' data-position='" . $Result['position'] ."'>Delete</td>
                 </tr>
             
             ";
@@ -889,7 +875,7 @@ class Content {
         echo "
                     <tr>
                         <td>
-                            <input type='text' id='position-day' class='input' placeholder='Position'>
+                            <input type='text' id='position-name' class='input' placeholder='Position'>
                         </td>
                         <td>
                             <input type='checkbox' id='position-admin' class='input'>
@@ -911,13 +897,6 @@ class Content {
                     <div id='table-container'>
                     
                         <table>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
 
         ";
 
@@ -928,6 +907,7 @@ class Content {
         hourly.news.date,
         hourly.news.title
         FROM hourly.news
+        ORDER BY hourly.news.date ASC
         ');
 
         mysqli_stmt_bind_result($Statement,
@@ -951,12 +931,11 @@ class Content {
                 echo "
 
                     <tr>
-                        <td>" . $Result['id'] . "</td>
                         <td>" . $Result['author'] . "</td>
                         <td>" . $Result['date'] . "</td>
-                        <td>" . $Result['title'] . "</td>
+                        <td class='news-title'>" . $Result['title'] . "</td>
                         <!--<td id='news-edit' class='option edit'>Edit</td>-->
-                        <td id='news-delete' class='option delete'>Delete</td>
+                        <td id='news-delete' class='option delete' data-newsid='" . $Result['id'] . "'>Delete</td>
                     </tr>
                 
                 ";
@@ -979,13 +958,15 @@ class Content {
 
                         <textarea id='news-content' class='input' wrap='soft' placeholder='Content'></textarea>
 
-                        <input id='news-submit' class='input' type='submit' value='Submit'>
+                        <input id='news-submit' class='input' type='submit' value='Submit' data-author='" . $_SESSION['User']['Username'] . "'>
 
                     </div>
 
                 </div>
 
             </div>
+
+            <script src='js/min/adminLoad.min.js'></script>
         
         ";
         

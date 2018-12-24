@@ -66,6 +66,7 @@ html {
   top: 0px;
   grid-column: auto;
   grid-row: auto;
+  max-height: 100%;
   background-color: #4a4a4a;
   margin: 10px;
   border: 1px solid #00ff88;
@@ -107,8 +108,8 @@ html {
         font-weight: 100;
         font-style: normal;
         line-height: 15px; }
-        .box-container .inner-container table tr #accounts-add,
-        .box-container .inner-container table td #accounts-add {
+        .box-container .inner-container table tr #account-add,
+        .box-container .inner-container table td #account-add {
           width: auto; }
         .box-container .inner-container table tr #account-username,
         .box-container .inner-container table td #account-username {
@@ -122,6 +123,11 @@ html {
         .box-container .inner-container table tr #account-position,
         .box-container .inner-container table td #account-position {
           width: 25%; }
+        .box-container .inner-container table tr .news-title,
+        .box-container .inner-container table td .news-title {
+          position: relative;
+          right: 10%;
+          margin-right: 10px; }
         .box-container .inner-container table tr.option.add,
         .box-container .inner-container table td.option.add {
           position: relative;
@@ -142,6 +148,8 @@ html {
             text-decoration: underline; }
         .box-container .inner-container table tr.option.delete,
         .box-container .inner-container table td.option.delete {
+          position: absolute;
+          right: 0px;
           float: right;
           color: #ff0000;
           margin-right: 10px;
@@ -161,13 +169,13 @@ html {
       left: 0px;
       height: 100%;
       width: 50%;
-      border-right: 1px solid #00ff22; }
+      overflow-x: hidden;
+      overflow-y: auto; }
     .box-container .inner-container #post-container {
       position: absolute;
       right: 0px;
       height: 100%;
-      width: 50%;
-      border-left: 1px solid #00ff22; }
+      width: 50%; }
       .box-container .inner-container #post-container #news-title {
         position: relative;
         margin-top: 20px;
