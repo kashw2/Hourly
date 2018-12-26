@@ -17,6 +17,7 @@ html {
         grid-row: 2;
         background-color: #454545; }
         html body #grid-container #grid-content #content-login-container {
+          position: relative;
           display: grid;
           grid-template-columns: 1fr;
           grid-template-rows: 50px auto;
