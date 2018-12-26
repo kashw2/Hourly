@@ -62,7 +62,7 @@ $Auth->getUserByToken($conn);
 
                 ?>
 
-                <form id='timeoff-form' method='post' action='inc/actions/timeoff.inc.php'>
+                <form id='timeoff-form' method='post' action='inc/actions/timeoff.add.inc.php'>
 
                     <?php
 
