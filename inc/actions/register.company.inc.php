@@ -47,7 +47,8 @@ if(
         if(!empty($_POST['parentcompany'])) {
 
             $Statement = mysqli_prepare($conn, '
-            INSERT INTO hourly.companies (
+            INSERT INTO 
+            hourly.companies (
             hourly.companies.id,
             hourly.companies.name,
             hourly.companies.ceo,

@@ -97,6 +97,31 @@ if(
 
             } else {
 
+                $Admin = 1;
+
+                $Statement = mysqli_prepare($conn, '
+                INSERT INTO
+                hourly.positions (
+                hourly.positions.id,
+                hourly.positions.position,
+                hourly.positions.admin
+                ) VALUES (
+                DEFAULT,
+                ?,
+                ?
+                );
+                ');
+            
+                mysqli_stmt_bind_param($Statement,
+                'si',
+                $_SESSION['User']['Position'],
+                $Admin
+                );
+            
+                mysqli_stmt_execute($Statement);
+            
+                mysqli_stmt_close($Statement);
+                
                 $Statement = mysqli_prepare($conn, '
                 INSERT INTO
                 hourly.accounts (
@@ -112,7 +137,12 @@ if(
                 ?,
                 ?,
                 ?,
-                ?
+                (
+                    SELECT
+                    hourly.positions.id
+                    FROM hourly.positions
+                    WHERE hourly.positions.position = ?
+                )
                 )
                 ');
 
@@ -140,6 +170,8 @@ if(
                     header('Location: ../../home.php');
 
                 }
+
+                
 
             }
 

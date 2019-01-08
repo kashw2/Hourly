@@ -1,5 +1,4 @@
-
-# Populate the Positions table with a default Admin account
+# Populate the Positions table
 
 INSERT INTO
 hourly.positions (
@@ -12,9 +11,41 @@ DEFAULT,
 1
 );
 
+# Populate the Companies table
+
+INSERT INTO 
+hourly.companies (
+hourly.companies.id,
+hourly.companies.name,
+hourly.companies.ceo,
+hourly.companies.liability,
+hourly.companies.state,
+hourly.companies.businessaddress,
+hourly.companies.parentcompany,
+hourly.companies.registrarfirstname,
+hourly.companies.registrarlastname,
+hourly.companies.registrarcompanyposition,
+hourly.companies.registraremail,
+hourly.companies.creationdate
+) VALUES (
+DEFAULT, 
+"Hourly", 
+"Administrator", 
+"Full", 
+"Queensland", 
+"13 Matrix St", 
+"", 
+"Admin", 
+"Istrator", 
+"Admin",
+"Admin@Hourly.com", 
+DEFAULT
+);
+
 # Populate the Accounts table
 
-INSERT INTO `hourly`.`accounts` (
+INSERT INTO 
+hourly.accounts (
 hourly.accounts.username,
 hourly.accounts.email,
 hourly.accounts.password,
