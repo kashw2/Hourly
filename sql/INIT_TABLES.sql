@@ -12,6 +12,22 @@ DEFAULT,
 1
 );
 
+# Populate the Accounts table
+
+INSERT INTO `hourly`.`accounts` (
+hourly.accounts.username,
+hourly.accounts.email,
+hourly.accounts.password,
+hourly.accounts.company,
+hourly.accounts.positionid
+) VALUES (
+'Admin',
+'Admin@Hourly.com',
+'7B7BC2512EE1FEDCD76BDC68926D4F7B',
+'Hourly',
+'1'
+);
+
 # Populate the News table
 
 INSERT INTO 
@@ -23,7 +39,7 @@ hourly.news.title,
 hourly.news.content
 ) VALUES (
 DEFAULT,
-"Keanu Ashwell",
+"Admin",
 CURRENT_TIMESTAMP,
 "Welcome",
 "If you can see this post then the News table has been populated with initilisation data and is working as intended."
